@@ -152,8 +152,13 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# Local repo
+# Local repo or files
 pmc-llama-13b-awq/
+BioMedGPT-LM-7B-awq/
+out/
+fails_medmcqa_stratified_10percent.csv
+example.py
+quantize*
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

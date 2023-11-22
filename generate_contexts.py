@@ -13,7 +13,15 @@ parser = get_parser()
 args = parser.parse_args_into_dataclasses()[0]
 
 dataset_out_name = args.data_path.split("/")[2].split(".")[0] if args.data_path else args.dataset_name
-logging.basicConfig(filename=f"{args.out_dir}/{args.model_name}_{dataset_out_name}.log", level=logging.INFO)
+log_file_path= f"{args.out_dir}/{args.model_name}_{dataset_out_name}.log"
+
+# set up logging to file
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%d-%m-%y %H:%M',
+                    filename=log_file_path,
+                    filemode='w')
+
 logger = logging.getLogger(__name__)
 
 # Load the LLM
@@ -45,14 +53,16 @@ logger.info(f"Done!")
 batch_size = args.batch_size
 filename = args.model_name + "-template.txt"
 
+logger.info(f"Reading template...")
 with open(f"prompt/{filename}") as f:
     prompt_template = f.read().strip()
+logger.info(f"Done!")
 
 out_json = {}
 fails = {}
 step = 0
 
-if "medmcqa" in args.dataset_name and "pmc-llama" in args.model_name:
+if "medmcqa" in args.dataset_name and args.model_name in ["pmc-llama-13b-awq","BioMedGPT-LM-7B-awq"]:
     
     max_samples = len(dataset) if args.max_samples < 1 else args.max_samples
     logger.info(f"Samples considered: {max_samples}")
@@ -73,20 +83,30 @@ if "medmcqa" in args.dataset_name and "pmc-llama" in args.model_name:
 
             for i, out in enumerate(outputs):
                 prompt = out.prompt
-                question = prompt.split("### Question:")[3]
-                question = question.replace("### Context:", "").strip()
+                generated_text_1, generated_text_2 = "", ""
 
-                generated_text_1 = clean_generated_text(args, out.outputs[0].text)
-                generated_text_2 = clean_generated_text(args, out.outputs[1].text)
+                if "pmc-llama" in args.model_name.lower():
+                    question = prompt.split("### Question:")[3]
+                    question = question.replace("### Context:", "").strip()
 
-                out_json[ids_batch[i]] = {
-                    "question": question,
-                    "generated_text_1": generated_text_1,
-                    "generated_text_2": generated_text_2,
-                }
+                    generated_text_1 = clean_generated_text(args, out.outputs[0].text)
+                    generated_text_2 = clean_generated_text(args, out.outputs[1].text)
+                
+                if "biomedgpt" in args.model_name.lower():
+                    question = prompt.split("### Question:")[1]
+                    question = question.replace("### Context:", "").strip()
+
+                    generated_text_1 = out.outputs[0].text.strip()
+                    generated_text_2 = out.outputs[1].text.strip()
 
                 if not generated_text_1.strip() and not generated_text_2.strip():
                     fails[ids_batch[i]] = question
+                else:
+                    out_json[ids_batch[i]] = {
+                        "question": question,
+                        "generated_text_1": generated_text_1,
+                        "generated_text_2": generated_text_2,
+                    }
 
             end_time = time.time()
             elapsed_time = end_time - start_time
@@ -95,8 +115,8 @@ if "medmcqa" in args.dataset_name and "pmc-llama" in args.model_name:
         except AssertionError as e:
             # Custom handling for the AssertionError
             fails[ids_batch[i]] = question
-            logger.exception(f"An exception occurred. BATCH {step} skipped.")
-            
+            logger.error(f"An exception occurred. BATCH {step} skipped.")
+            continue
 
         # save every 2 steps
         if step % args.saving_steps == 0:

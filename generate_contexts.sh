@@ -1,7 +1,7 @@
 #!/bin/bash
 
-python3 main.py \
-    --model_name pmc-llama-13b-awq \
+python3 generate_contexts.py \
+    --model_name BioMedGPT-LM-7B-awq \
     --dataset_name medmcqa \
     --data_path data/train/medmcqa_stratified_10percent.csv \
     --split train \

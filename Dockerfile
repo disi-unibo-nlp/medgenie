@@ -5,7 +5,7 @@ LABEL maintainer="disi-unibo-nlp"
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Set work directory
-WORKDIR /genRead
+WORKDIR /to-generate-or-to-retrieve
 
 # Install general-purpose dependencies
 RUN apt-get update -y && \
