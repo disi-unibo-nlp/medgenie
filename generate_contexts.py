@@ -83,22 +83,16 @@ if "medmcqa" in args.dataset_name and args.model_name in ["pmc-llama-13b-awq","B
 
             for i, out in enumerate(outputs):
                 prompt = out.prompt
-                generated_text_1, generated_text_2 = "", ""
-
+            
                 if "pmc-llama" in args.model_name.lower():
                     question = prompt.split("### Question:")[3]
-                    question = question.replace("### Context:", "").strip()
-
-                    generated_text_1 = clean_generated_text(args, out.outputs[0].text)
-                    generated_text_2 = clean_generated_text(args, out.outputs[1].text)
-                
                 if "biomedgpt" in args.model_name.lower():
                     question = prompt.split("### Question:")[1]
-                    question = question.replace("### Context:", "").strip()
 
-                    generated_text_1 = out.outputs[0].text.strip()
-                    generated_text_2 = out.outputs[1].text.strip()
-
+                question = question.replace("### Context:", "").strip()
+                generated_text_1 = clean_generated_text(args, out.outputs[0].text)
+                generated_text_2 = clean_generated_text(args, out.outputs[1].text)
+            
                 if not generated_text_1.strip() and not generated_text_2.strip():
                     fails[ids_batch[i]] = question
                 else:
