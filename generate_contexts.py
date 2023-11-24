@@ -108,7 +108,6 @@ if "medmcqa" in args.dataset_name and args.model_name in ["pmc-llama-13b-awq","B
 
         except AssertionError as e:
             # Custom handling for the AssertionError
-            fails[ids_batch[i]] = question
             logger.error(f"An exception occurred. BATCH {step} skipped.")
             continue
 
@@ -117,17 +116,17 @@ if "medmcqa" in args.dataset_name and args.model_name in ["pmc-llama-13b-awq","B
             # Read existing data from the file if it exists
             logger.info(f"Saving generated contexts at step {step}...")
             try:
-                with open(f'{args.out_dir}/contexts_{args.model_name}_{dataset_out_name}.json', 'r') as f:
+                with open(f'{args.out_dir}/{args.split}/contexts_{args.model_name}_{dataset_out_name}.json', 'r') as f:
                     existing_data = json.load(f)
             except FileNotFoundError:
                 existing_data = {}
 
             existing_data.update(out_json)
-            with open(f'{args.out_dir}/contexts_{args.model_name}_{dataset_out_name}.json', 'w') as f:
+            with open(f'{args.out_dir}/{args.split}/contexts_{args.model_name}_{dataset_out_name}.json', 'w') as f:
                 json.dump(existing_data, f, indent=4)  
             logger.info(f"Done!")
 
     logger.info(f"Saving failure questions...")
-    with open(f'{args.out_dir}/fails_{args.model_name}_{dataset_out_name}.json', 'w') as f:
+    with open(f'{args.out_dir}/{args.split}/fails_{args.model_name}_{dataset_out_name}.json', 'w') as f:
         json.dump(fails, f, indent=4)  
     logger.info(f"Done!")
