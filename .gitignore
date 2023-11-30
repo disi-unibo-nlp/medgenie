@@ -156,9 +156,18 @@ cython_debug/
 pmc-llama-13b-awq/
 BioMedGPT-LM-7B-awq/
 out/
-fails_medmcqa_stratified_10percent.csv
+fails_medmcqa_*.csv
 example.py
 quantize*
+FiD/
+experiment_*
+experiments/
+generate_contexts_old.py
+*.json
+meditron-7b-awq
+checkpoint
+fid*
+test_reader*
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

@@ -1,0 +1,26 @@
+### Question: 
+Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma:	
+
+### Context: 
+Benign prostatic hyperplasia (BPH) is a common condition in aging men characterized by the non-malignant enlargement of the prostate gland. The prostate surrounds the urethra, and its enlargement can lead to various urinary symptoms such as difficulty in urination, incomplete emptying of the bladder, and increased frequency of urination.
+When BPH causes chronic urethral obstruction, it can have implications for the kidneys and their parenchyma. The term "parenchyma" refers to the functional tissue of an organ, and in the case of the kidneys, it includes the renal cortex and medulla, where vital functions such as filtration, reabsorption, and secretion occur.
+Chronic urethral obstruction can create back pressure on the urinary system, impacting the flow of urine from the kidneys to the bladder. This increased pressure in the urinary tract can lead to several changes in the kidney parenchyma, collectively referred to as obstructive nephropathy. Some of the key changes include:
+Hydronephrosis: The prolonged obstruction of urine flow can cause the renal pelvis and calyces to dilate, a condition known as hydronephrosis. This dilation is a result of the accumulation of urine upstream of the obstruction, causing stretching and expansion of the renal structures.
+Interstitial fibrosis: Chronic obstruction may lead to inflammation and fibrosis in the interstitium of the kidney. Fibrosis is the excessive formation of connective tissue, and in this context, it can replace normal kidney tissue, impairing its function.
+Renal atrophy: Prolonged obstruction and the associated changes can lead to the atrophy of renal tubules and glomeruli. This atrophy is a consequence of the reduced blood flow and the pressure exerted on the kidney tissues.
+Impaired renal function: Over time, the structural changes in the kidney parenchyma can result in impaired renal function. The ability of the kidneys to filter waste products, regulate electrolytes, and maintain fluid balance may be compromised.
+Renal failure: In severe cases, chronic urethral obstruction due to BPH can progress to renal failure, where the kidneys are no longer able to adequately perform their vital functions. This is a serious and potentially life-threatening condition that may require medical intervention, such as surgery to relieve the obstruction.
+
+### Question: 
+Which vitamin is supplied from only animal source:
+
+### Context: 
+Vitamin B12, also known as cobalamin, is the vitamin that is primarily supplied from only animal sources. Unlike many other vitamins that can be obtained from both plant and animal sources, vitamin B12 is unique in its occurrence primarily in animal-derived foods.
+Vitamin B12 plays a crucial role in various physiological processes, including the formation of red blood cells, neurological function, and DNA synthesis. It is essential for maintaining the health of nerve cells and aiding in the production of DNA and RNA.
+Common sources of vitamin B12 from animal products include:
+- Meat: Particularly, beef, pork, and lamb are good sources of vitamin B12.
+- Poultry: Chicken and turkey also contain vitamin B12.
+- Fish: Fatty fish such as salmon, trout, and tuna are good sources.
+- Shellfish: Clams, oysters, and mussels are rich in vitamin B12.
+- Dairy products: Milk, cheese, and eggs contain vitamin B12, although in smaller amounts compared to meat and fish.
+Since vitamin B12 is not found in significant amounts in plant foods, individuals following a strict vegetarian or vegan diet may be at risk of B12 deficiency and may need to consider supplementation or fortified foods to meet their dietary requirements. It's an essential nutrient for overall health, and a deficiency can lead to various health issues, including anemia and neurological problems.

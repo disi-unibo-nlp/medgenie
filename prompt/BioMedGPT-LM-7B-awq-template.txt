@@ -1,1 +1,40 @@
-Given a question, provide an extensive context as background to allow the answer of the question without any other kind of knowledge source.
+You are working as an excellent assistant in medical domain. Below a human gives a question about a medical quiz. Provide an extensive background context to help answering correctly the question. Please, it is crucial to refrain from disclosing the ultimate correct answer to maintain the integrity of the quiz process.
+
+### Human:
+Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma:	
+- Hyperplasia	
+- Hyperophy	
+- Atrophy	
+- Dyplasia
+
+### Assistant:
+In the scenario of chronic urethral obstruction caused by benign prostatic hyperplasia (BPH), it's essential to consider the impact on the kidney parenchyma. The continuous blockage of the urethra, a tube responsible for carrying urine from the bladder, can result in a condition known as hydronephrosis.
+
+Chronic Urethral Obstruction:
+- This condition involves a persistent blockage in the urethra, commonly caused by the non-cancerous enlargement of the prostate gland, known as benign prostatic hyperplasia (BPH).
+
+Kidney Parenchyma and Hydronephrosis:
+- The kidney parenchyma is the functional tissue of the kidney responsible for filtration and urine production.
+- Hydronephrosis is the swelling or enlargement of the kidney due to the backup of urine caused by the obstruction. The increased pressure within the kidney can lead to changes in its structure and function.
+
+Understanding the Terms:
+- Hyperplasia: Refers to an increase in the number of cells. Consider whether this is the likely change in the kidney parenchyma due to chronic urethral obstruction.
+- Hyperophy: This seems to be a misspelling. It might be intended as "hypertrophy," which refers to an increase in the size of cells. Consider if this is a probable outcome in the context of the described condition.
+- Atrophy: Describes a reduction in the size or function of an organ or tissue. Consider whether atrophy is a likely change in the kidney parenchyma due to prolonged obstruction.
+- Dyplasia: Likely a typographical error. The correct term is "dysplasia," which refers to abnormal development or growth of cells. Consider whether dysplasia is a probable outcome in the kidney parenchyma.
+
+By understanding the impact of chronic urethral obstruction on the kidney and considering the definitions of the provided terms, you can deduce the potential change in kidney parenchyma.
+
+### Human:
+Which vitamin is supplied from only animal source:	
+- Vitamin C 
+- Vitamin B7
+- Vitamin B12
+- Vitamin D
+
+### Assistant: 
+Vitamins are essential micronutrients required by the human body for various physiological functions. They are classified into different groups, and each vitamin plays a specific role in maintaining health. The question pertains to identifying the vitamin that is exclusively supplied from animal sources.
+- Vitamin C (Ascorbic Acid): This vitamin is found in various fruits and vegetables, particularly citrus fruits, berries, and leafy greens. It is not exclusive to animal sources.
+- Vitamin B7 (Biotin): Biotin is a water-soluble vitamin found in a variety of foods, including meat, fish, eggs, nuts, seeds, and certain vegetables. While it is present in some animal products, it is not exclusively derived from animals.
+- Vitamin B12 (Cobalamin): Vitamin B12 is unique in that it is primarily found in animal-based sources. It plays a crucial role in neurological function and the formation of red blood cells. Dietary sources include meat, fish, eggs, and dairy products. Vegetarians and vegans may need to supplement or rely on fortified foods to meet their B12 requirements since plant-based foods generally lack this vitamin.
+- Vitamin D: Vitamin D is synthesized in the skin upon exposure to sunlight and is also found in some food sources. While animal products such as fatty fish, liver, and egg yolks contain vitamin D, it can also be obtained from fortified foods and supplements. Therefore, vitamin D is not exclusively derived from animal sources.
