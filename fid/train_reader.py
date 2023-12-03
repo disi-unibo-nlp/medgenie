@@ -162,6 +162,7 @@ if __name__ == "__main__":
     #model_name = 'kaist-ai/CoT-T5-3B'
     #model_name = 'T5-base'
     model_name = "google/flan-t5-" + opt.model_size
+    
     model_class = src.model.FiDT5
 
     #load data

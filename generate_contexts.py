@@ -6,10 +6,12 @@ import pandas as pd
 from tqdm import tqdm
 from vllm import LLM, SamplingParams
 from src.input_args import get_parser
-from src.utils import clean_generated_text, get_prompts_medmcqa, get_split_info, get_dataset_splits
+from src.utils import clean_generated_text, get_prompts_medmcqa, get_split_info, get_dataset_splits, get_prompts_medqa
+import os
+
 
 def main(args, logger):
-
+    
     splits = [split for split, flag in [("train", args.train_set), ("validation", args.validation_set), ("test", args.test_set)] if flag]
     logger.info(f"Splits processed: {splits}")
 
@@ -43,24 +45,29 @@ def main(args, logger):
 
     last_index_saved = {}
     for split in splits:
+        out_dir_final = f'{args.out_dir}/{args.out_name}/{split}'
+        os.makedirs(out_dir_final, exist_ok=True)
         last_index_saved[split] = 0
         out_json = {}
         fails = {}
         step = 0
         logger.info(f"Split: {split}")
-        dataset, max_samples, start_idx, data_path, filename = get_split_info(datasets, split, args)
+        dataset, max_samples, start_idx = get_split_info(datasets, split, args)
         data = dataset[start_idx:max_samples]
         logger.info(f"Start index: {start_idx}\nMax samples index: {max_samples}\nSamples considered: {max_samples-start_idx}")
 
-        if "medmcqa" in args.dataset_name and args.model_name in ["pmc-llama-13b-awq","BioMedGPT-LM-7B-awq"]:
+        if "medmcqa" in args.dataset_name or "medqa" in args.dataset_name and args.model_name in ["pmc-llama-13b-awq","BioMedGPT-LM-7B-awq"]:
             
-            ids = dataset['id'][start_idx:max_samples]
-            prompts = get_prompts_medmcqa(template=prompt_template, data=data, no_options=args.no_options)
+            ids = dataset['id'][start_idx:max_samples] if args.dataset_name == "medmcqa" else list(range(start_idx, max_samples))
+            
+            prompts = get_prompts_medmcqa(template=prompt_template, data=data, no_options=args.no_options) if args.dataset_name == "medmcqa" else get_prompts_medqa(template=prompt_template, data=data, no_options=args.no_options)
             logger.info(f"First prompt example:\n{prompts[0]}")
+            logger.info(f"\n\nNumber of promopt:\n{len(prompts)}")
+            
             batches = [prompts[i:i + batch_size] for i in range(0, len(prompts), batch_size)]
             ids_batches = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
-
-            for batch in tqdm(batches):
+            logger.info(f"{ids_batches}")
+            for batch in tqdm(batches, desc=f"processing {split}"):
                 ids_batch = ids_batches[step]
                 step += 1
                 # Generate output based on the input prompt and sampling parameters
@@ -68,7 +75,7 @@ def main(args, logger):
                 try:
                     outputs = llm.generate(batch, sampling_params, use_tqdm=False)
 
-                    for i, out in enumerate(outputs):
+                    for id_out, out in enumerate(outputs):
                         prompt = out.prompt
                     
                         if "pmc-llama" in args.model_name.lower():
@@ -77,16 +84,18 @@ def main(args, logger):
                             question = prompt.split("### Question:")[1]
 
                         question = question.replace("### Context:", "").strip()
-                        generated_text_1 = clean_generated_text(args, out.outputs[0].text)
-                        generated_text_2 = clean_generated_text(args, out.outputs[1].text)
-                    
-                        if not generated_text_1.strip() and not generated_text_2.strip():
-                            fails[ids_batch[i]] = question
+                        #generated_text_1 = clean_generated_text(args, out.outputs[0].text)
+                        #generated_text_2 = clean_generated_text(args, out.outputs[1].text)
+                        contexts = [clean_generated_text(args, out.outputs[i].text).strip() for i in range(args.n) if clean_generated_text(args, out.outputs[i].text).strip()]
+                        #if not generated_text_1.strip() and not generated_text_2.strip():
+                        if not contexts:
+                            fails[ids_batch[id_out]] = question
                         else:
-                            out_json[ids_batch[i]] = {
+                            logger.info(ids_batch[id_out])
+                            out_json[ids_batch[id_out]] = {
                                 "question": question,
-                                "generated_text_1": generated_text_1,
-                                "generated_text_2": generated_text_2,
+                                "contexts": contexts,
+                                #"generated_text_2": generated_text_2,
                             }
 
                     end_time = time.time()
@@ -99,25 +108,26 @@ def main(args, logger):
                     break 
 
                 # save every 2 steps
-                if step % args.saving_steps == 0:
+                if step % args.saving_steps == 0 or step == len(batches):
                     # Read existing data from the file if it exists
                     logger.info(f"Saving generated contexts at step {step}...")
                     try:
-                        with open(f'{args.out_dir}/{split}/contexts_{args.model_name}_{filename}.json', 'r') as f:
+                        with open(f'{out_dir_final}/contexts_{args.model_name}_{args.out_name}.json', 'r') as f:
                             existing_data = json.load(f)
                     except FileNotFoundError:
                         existing_data = {}
 
                     existing_data.update(out_json)
-                    with open(f'{args.out_dir}/{split}/contexts_{args.model_name}_{filename}.json', 'w') as f:
+                    out_json = {}
+                    with open(f'{out_dir_final}/contexts_{args.model_name}_{args.out_name}.json', 'w') as f:
                         json.dump(existing_data, f, indent=4)  
                     logger.info(f"Done!")
-                    last_index_saved[split] += args.saving_steps * batch_size
+                    last_index_saved[split] += args.saving_steps * batch_size if step % args.saving_steps == 0 else batch_size
                     logger.info(f"Last index saved: {last_index_saved[split]}")
                     
 
             logger.info(f"Saving failure questions...")
-            with open(f'{args.out_dir}/{split}/fails_{args.model_name}_{filename}.json', 'w') as f:
+            with open(f'{out_dir_final}/fails_{args.model_name}_{args.out_name}.json', 'w') as f:
                 json.dump(fails, f, indent=4)  
             logger.info(f"Done!")
             logger.info(f"{split.upper()} SET FULL PROCESSED!")
@@ -125,8 +135,10 @@ def main(args, logger):
 if __name__ == "__main__":
     parser = get_parser()
     args = parser.parse_args_into_dataclasses()[0]
-
-    log_file_path= f"{args.out_dir}/{args.model_name}_{args.dataset_name}.log"
+    out_path_log = f'{args.out_dir}/{args.out_name}'
+    os.makedirs(out_path_log, exist_ok=True)
+    print(out_path_log)
+    log_file_path= f"{out_path_log}/{args.model_name}_{args.dataset_name}.log"
 
     # set up logging to file
     logging.basicConfig(level=logging.DEBUG,

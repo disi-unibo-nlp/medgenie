@@ -7,14 +7,15 @@ from transformers import HfArgumentParser
 class ScriptArguments:
    
     model_name: Optional[str] = field(default="pmc-llama-13b-awq", metadata={"help": "the model name"})
-    dataset_name: Optional[str] = field(default="medmcqa", metadata={"help": "the dataset name", "choices":["medmcqa"]})
+    dataset_name: Optional[str] = field(default="medmcqa", metadata={"help": "the dataset name", "choices":["medmcqa", "medqa"]})
     data_path_train: Optional[str] = field(default=None, metadata={"help": "the train dataset file path if you want to load data locally"})
     data_path_validation: Optional[str] = field(default=None, metadata={"help": "the validation dataset file path if you want to load data locally"})
     data_path_test: Optional[str] = field(default=None, metadata={"help": "the test dataset file path if you want to load data locally"})
-    train_set: Optional[bool] = field(default=True, metadata={"help": "train set split is consider for context generation"})
+    train_set: Optional[bool] = field(default=False, metadata={"help": "train set split is consider for context generation"})
     validation_set: Optional[bool] = field(default=False, metadata={"help": "validation set split is consider for context generation"})
     test_set: Optional[bool] = field(default=False, metadata={"help": "test set split is consider for context generation"})
     out_dir: Optional[str] =  field(default="./out", metadata={"help": "outputs directory"})
+    out_name: Optional[str] =  field(default="out_contexts.json", metadata={"help": "output filename"})
     prompt_dir: Optional[str] =  field(default="./prompt", metadata={"help": "prompt templates directory"})
     cache_dir: Optional[str] =  field(default="/home/llms", metadata={"help": "cache directory"})
     max_samples_train: Optional[int] = field(default=-1, metadata={"help": "Maximum number of data to process in train set. Default is -1 to process all data."})
