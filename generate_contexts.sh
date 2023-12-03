@@ -13,10 +13,10 @@ python3 generate_contexts.py \
     --train_set \
     --validation_set \
     --test_set \
-    --data_path_train data/medqa/train/phrases_no_exclude_train.jsonl \
-    --data_path_test data/medqa/test/phrases_no_exclude_test.jsonl \
-    --data_path_validation data/medqa/dev/phrases_no_exclude_dev.jsonl \
-    --out_name medqa_pmc_llama_3n \
+    --data_path_train data/medqa/train/train.jsonl \
+    --data_path_test data/medqa/test/test.jsonl \
+    --data_path_validation data/medqa/dev/dev.jsonl \
+    --out_name medqa_pmc_llama_2n_no_options \
     --no_options
     #--max_samples_train 40 \
     #--max_samples_validation 16 \
