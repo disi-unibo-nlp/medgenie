@@ -22,22 +22,10 @@ def get_loggers(args, splits):
 
 def apply_template_medmcqa(prompt_template, question, opa=None, opb=None, opc=None, opd=None):
     if not(opa and opb and opc and opd):
-        prompt = prompt_template + f"""\n\n### Question:
-{question}
-
-### Context:
-"""	
+        prompt = prompt_template + f"\n\n### Question:\n{question}\n\n### Context:"	
     else:
-        prompt = prompt_template + f"""\n\n### Question:
-{question}
-- {opa}
-- {opb}
-- {opc}
-- {opd}
-
-### Context:
-"""	
-
+        prompt = prompt_template + f"\n\n### Question:\n{question}\n- {opa}\n- {opb}\n- {opc}\n- {opd}\n\n### Context:"	
+    
     return prompt
 
 def apply_template_medqa(prompt_template, question, options):
@@ -66,8 +54,6 @@ def clean_generated_text(args, generated_text):
 
 
 def get_prompts_medmcqa(template, data, no_options=False):
-   
-
     questions = data['question']
     if no_options:
         prompts = [apply_template_medmcqa(template, question) for question in questions]
@@ -88,6 +74,29 @@ def get_prompts_medqa(template, data, no_options=False):
         prompts.append(apply_template_medqa(template, question, options))
         
     return prompts
+
+def get_prompts(args, template, data, no_options=False):
+    if args.dataset_name == "medqa":
+        return get_prompts_medqa(template, data, no_options)
+    if args.dataset_name == "medmcqa":
+        return get_prompts_medmcqa(template, data, no_options)
+    return []
+
+def process_output(args, output):
+    prompt = output.prompt
+    if "pmc-llama" in args.model_name.lower():
+        question = prompt.split("### Question:")[3]
+        question = question.replace("### Context:", "").strip()
+    '''
+    if "biomedgpt" in args.model_name.lower():
+        question = prompt.split("### Human:")[1]
+        question = question.replace("### Assistant:", "").strip()
+    '''
+
+    contexts = [clean_generated_text(args, output.outputs[i].text).strip() 
+                for i in range(len(output.outputs)) if clean_generated_text(args, output.outputs[i].text).strip()]
+    
+    return contexts, question
 
 def get_dataset_splits(args):
     train_dataset, val_dataset, test_dataset = [], [], []

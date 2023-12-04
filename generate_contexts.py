@@ -6,7 +6,7 @@ import pandas as pd
 from tqdm import tqdm
 from vllm import LLM, SamplingParams
 from src.input_args import get_parser
-from src.utils import clean_generated_text, get_prompts_medmcqa, get_split_info, get_dataset_splits, get_prompts_medqa
+from src.utils import process_output, get_prompts, get_split_info, get_dataset_splits
 import os
 
 
@@ -59,14 +59,12 @@ def main(args, logger):
         if "medmcqa" in args.dataset_name or "medqa" in args.dataset_name and args.model_name in ["pmc-llama-13b-awq","BioMedGPT-LM-7B-awq"]:
             
             ids = dataset['id'][start_idx:max_samples] if args.dataset_name == "medmcqa" else list(range(start_idx, max_samples))
-            
-            prompts = get_prompts_medmcqa(template=prompt_template, data=data, no_options=args.no_options) if args.dataset_name == "medmcqa" else get_prompts_medqa(template=prompt_template, data=data, no_options=args.no_options)
+            prompts = get_prompts(args, template=prompt_template, data=data, no_options=args.no_options)
             logger.info(f"First prompt example:\n{prompts[0]}")
-            logger.info(f"\n\nNumber of promopt:\n{len(prompts)}")
             
             batches = [prompts[i:i + batch_size] for i in range(0, len(prompts), batch_size)]
             ids_batches = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
-            logger.info(f"{ids_batches}")
+            
             for batch in tqdm(batches, desc=f"processing {split}"):
                 ids_batch = ids_batches[step]
                 step += 1
@@ -76,26 +74,13 @@ def main(args, logger):
                     outputs = llm.generate(batch, sampling_params, use_tqdm=False)
 
                     for id_out, out in enumerate(outputs):
-                        prompt = out.prompt
-                    
-                        if "pmc-llama" in args.model_name.lower():
-                            question = prompt.split("### Question:")[3]
-                        if "biomedgpt" in args.model_name.lower():
-                            question = prompt.split("### Question:")[1]
-
-                        question = question.replace("### Context:", "").strip()
-                        #generated_text_1 = clean_generated_text(args, out.outputs[0].text)
-                        #generated_text_2 = clean_generated_text(args, out.outputs[1].text)
-                        contexts = [clean_generated_text(args, out.outputs[i].text).strip() for i in range(args.n) if clean_generated_text(args, out.outputs[i].text).strip()]
-                        #if not generated_text_1.strip() and not generated_text_2.strip():
+                        contexts, question = process_output(args, out)
                         if not contexts:
                             fails[ids_batch[id_out]] = question
                         else:
-                            logger.info(ids_batch[id_out])
                             out_json[ids_batch[id_out]] = {
                                 "question": question,
-                                "contexts": contexts,
-                                #"generated_text_2": generated_text_2,
+                                "contexts": contexts
                             }
 
                     end_time = time.time()
