@@ -102,7 +102,7 @@ def get_dataset_splits(args):
     train_dataset, val_dataset, test_dataset = [], [], []
     if args.train_set:
         if args.dataset_name == "medmcqa":
-            if args.data_path_train and "stratified" in args.data_path_train and args.data_path_train.endswith('.csv'):
+            if args.data_path_train and args.data_path_train.endswith('.csv'):
                 train_dataset = load_dataset('csv', data_files=args.data_path_train, split="train")
             else:
                 train_dataset = load_dataset(args.dataset_name, split="train")
@@ -113,7 +113,7 @@ def get_dataset_splits(args):
 
     if args.validation_set:
         if args.dataset_name == "medmcqa":
-            if args.data_path_validation and "stratified" in args.data_path_validation and args.data_path_validation.endswith('.csv'):
+            if args.data_path_validation and args.data_path_validation.endswith('.csv'):
                 val_dataset = load_dataset('csv', data_files=args.data_path_validation, split="validation")
             else:
                 val_dataset = load_dataset(args.dataset_name, split="validation")
