@@ -35,6 +35,7 @@ class ScriptArguments:
     max_context_window: Optional[int] = field(default=4000, metadata={"help": "Maximum context window for the input prompt."})
     max_model_len: Optional[int] = field(default=4096, metadata={"help": "Maximum context window specified by default for the selected model"})
     n_contexts: Optional[int] = field(default=5, metadata={"help": "Number of contexts given as input within the prompt."})
+    test_set_path: Optional[str] =  field(default=None, metadata={"help": "input path for test data."})
 
 
 def get_accuracy(true_labels, predictions):
@@ -108,18 +109,18 @@ if __name__ == "__main__":
     if args.dataset_name == "medqa":
 
         if args.n_options == 4:
-            with open('../data/fid/medqa/TEST_FID_medqa_4op_DEF_ABCD.json') as f:
+            with open(args.test_set_path if args.test_set_path else '../data/fid/medqa/TEST_FID_medqa_4op_DEF_ABCD.json') as f:
                 test_set = json.load(f)    
         else:
-            with open('../data/fid/medqa/TEST_FID_medqa_ABCDE.json') as f:
+            with open(args.test_set_path if args.test_set_path else '../data/fid/medqa/TEST_FID_medqa_ABCDE.json') as f:
                 test_set = json.load(f)    
 
     if args.dataset_name == "medmcqa":
-        with open('../data/fid/medmcqa/DEV_FID_medmcqa_5n.json') as f:
+        with open(args.test_set_path if args.test_set_path else '../data/fid/medmcqa/DEV_FID_medmcqa_5n.json') as f:
             test_set = json.load(f)
     
     if args.dataset_name == "mmlu":
-        with open('../data/fid/mmlu/mmlu_medical_fid.json') as f:
+        with open(args.test_set_path if args.test_set_path else '../data/fid/mmlu/mmlu_medical_fid.json') as f:
             test_set = json.load(f)
 
     MAX_INDEX = len(test_set) if args.max_samples == -1 else args.max_samples
