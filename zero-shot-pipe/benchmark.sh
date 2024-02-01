@@ -1,9 +1,12 @@
 python3 benchmark.py \
-    --model_name meta-llama/Llama-2-7b-chat-hf \
-    --dataset_name mmlu \
-    --n_shots 2 \
+    --model_name HuggingFaceH4/zephyr-7b-beta \
+    --dataset_name medqa \
+    --n_options 4 \
     --batch_size 8 \
-    --max_context_window 4000 \
-    --no_contexts \
-    --mmlu_test_path ../data/mmlu/mmlu_complete.csv \
-    #--mmlu_ctxs_path ../data/fid/mmlu/MMLU_complete_fid_5n.json \
+    --max_context_window 4000 
+    #--max_samples 32 \
+    #--out_name prova_out
+    #--no_contexts
+    
+# meta-llama/Llama-2-7b-chat-hf
+# HuggingFaceH4/zephyr-7b-beta
