@@ -4,7 +4,7 @@ def append_question(args, start_template, item, tokenizer, contexts=[]):
     length_template = len(tokenizer(start_template)['input_ids'])
 
     question =  item['question'].strip() if "pmc-llama" in args.model_name.lower() else item['question'].strip().replace("\nA.", "\n(A)").replace("\nB.", "\n(B)").replace("\nC.", "\n(C)").replace("\nD.", "\n(D)").replace("\nE.", "\n(E)")
-    qst = f"\n\n### Question:\n{question}"
+    qst = f"\n### Question:\n{question}"
     
     if "zephyr" in args.model_name.lower():
         qst += "</s>\n<|assistant|>"
@@ -17,7 +17,7 @@ def append_question(args, start_template, item, tokenizer, contexts=[]):
     max_value = max_value - (length_template+length_qst)
     
     if contexts:
-        text = "\n### Context:\n"
+        text = "\n\n### Context:\n"
         for ctx in contexts[:args.n_contexts]:
             if len(tokenizer(ctx)['input_ids']) <= max_value:
                 text += f'{ctx}\n'
