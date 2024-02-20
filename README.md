@@ -9,6 +9,7 @@ Briefly explanation of how to generate contexts, using [`generate_contexts.py`](
 
 * **Model parameters configuration**
 ```bash
+cd context_generation
 python3 generate_contexts.py \
     --model_name pmc-llama-13b-awq \
     --batch_size 8 \
@@ -41,11 +42,13 @@ python3 generate_contexts.py \
 ### Input file format
 After the context generation is necessary to concatenate and convert all contexts into a single input file for the readers. <br/> For conversion use [`preprocess.py`](./utils/preprocess.py) as follow:
 ```bash
+cd utils
 python3 preprocess.py \
+    --dataset_name medqa \
+    --test_set \
+    --data_path_test path_to_test_set \
     --contexts_w_ops path_to_generated_contexts_w_ops \
     --contexts_no_ops path_to_generated_contexts_no_ops \
-    --dataset path_to_original_dataset \
-    --save_fid_input path_where_to_save_the_input_file \
 ```
 
 ### 1. Fusion-in-Decoder
