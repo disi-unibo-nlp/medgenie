@@ -1,6 +1,5 @@
-# <img src="figures/hamlet.png" alt="hamlet icon" width="30">  MedGENIE
-
-## *To Generate or to Retrieve? On the Effectiveness of Artificial Contexts for Medical Open-Domain Question Answering*
+<h1 align="center"> <img src="figures/hamlet.png" alt="hamlet icon" width="30">  MedGENIE </h1>
+<h2 align="center"> To Generate or to Retrieve? <br>  On the Effectiveness of Artificial Contexts for Medical Open-Domain Question Answering  </h2>
 
 Official source code of **MedGENIE**, the first generate-then-read framework for multiple-choice question answering in medicine. This method generates relevant information through domain-specific models before answering questions, outperforming traditional retrieval-based approaches. Tested on MedQA-USMLE, MedMCQA, and MMLU datasets within a 24GB VRAM limit, **MedGENIE** sets new benchmarks, proving that generated contexts can significantly enhance accuracy in medical question answering. 
 
