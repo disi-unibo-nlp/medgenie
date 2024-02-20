@@ -14,12 +14,11 @@ from tqdm import tqdm
 from pathlib import Path
 from torch.utils.data import DataLoader, RandomSampler, DistributedSampler, SequentialSampler
 from src.options import Options
-
-import src.slurm
-import src.util
-import src.evaluation
-import src.data
-import src.model
+from src.slurm import init_distributed_mode, init_signal_handler
+from src.util import init_logger, average_main, save, weighted_average, set_optim
+from src.evaluation import ems
+from src.model import FiDT5
+from src.data import Collator, Dataset, load_data
 
 
 def train(model, optimizer, scheduler, step, train_dataset, eval_dataset, opt, collator, best_dev_em, checkpoint_path):
@@ -68,7 +67,7 @@ def train(model, optimizer, scheduler, step, train_dataset, eval_dataset, opt, c
                 scheduler.step()
                 model.zero_grad()
 
-            train_loss = src.util.average_main(train_loss, opt)
+            train_loss = average_main(train_loss, opt)
             curr_loss += train_loss.item()
 
             if step % opt.eval_freq == 0:
@@ -79,7 +78,7 @@ def train(model, optimizer, scheduler, step, train_dataset, eval_dataset, opt, c
                 if opt.is_main:
                     if dev_em > best_dev_em:
                         best_dev_em = dev_em
-                        src.util.save(model, optimizer, scheduler, step, best_dev_em,
+                        save(model, optimizer, scheduler, step, best_dev_em,
                                   opt, checkpoint_path, 'best_dev')
                     log = f"{step} / {opt.total_steps} |"
                     log += f"train: {curr_loss/opt.eval_freq:.3f} |"
@@ -91,9 +90,6 @@ def train(model, optimizer, scheduler, step, train_dataset, eval_dataset, opt, c
                         tb_logger.add_scalar("Training", curr_loss / (opt.eval_freq), step)
                     curr_loss = 0.
 
-            #if opt.is_main and step % opt.save_freq == 0:
-                #src.util.save(model, optimizer, scheduler, step, best_dev_em,
-                #          opt, checkpoint_path, f"step-{step}")
             if step > opt.total_steps:
                 break
 
@@ -125,75 +121,63 @@ def evaluate(model, dataset, tokenizer, collator, opt):
                 ans = tokenizer.decode(o, skip_special_tokens=True)
                 answers.append(ans)
                 gold = dataset.get_example(idx[k])['answers']
-                score = src.evaluation.ems(ans, gold)
+                score = ems(ans, gold)
                 total += 1
                 exactmatch.append(score)
 
-    exactmatch, total = src.util.weighted_average(np.mean(exactmatch), total, opt)
+    exactmatch, total = weighted_average(np.mean(exactmatch), total, opt)
     return exactmatch, answers
 
 if __name__ == "__main__":
     options = Options()
     options.add_reader_options()
-    #options.add_eval_options()
     options.add_optim_options()
     opt = options.parse()
-    #opt = options.get_options(use_reader=True, use_optim=True)
 
     torch.manual_seed(opt.seed)
-    src.slurm.init_distributed_mode(opt)
-    src.slurm.init_signal_handler()
+    init_distributed_mode(opt)
+    init_signal_handler()
 
     checkpoint_path = Path(opt.checkpoint_dir)/opt.name
     checkpoint_exists = checkpoint_path.exists()
     if opt.is_distributed:
         torch.distributed.barrier()
     checkpoint_path.mkdir(parents=True, exist_ok=True)
-    #if not checkpoint_exists and opt.is_main:
-    #    options.print_options(opt)
-    #checkpoint_path, checkpoint_exists = util.get_checkpoint_path(opt)
 
-    logger = src.util.init_logger(
+    logger = init_logger(
         opt.is_main,
         opt.is_distributed,
         checkpoint_path / 'run.log'
     )
 
-    #model_name = 'kaist-ai/CoT-T5-3B'
-    #model_name = 'T5-base'
     model_name = "google/flan-t5-" + opt.model_size
-    
-    model_class = src.model.FiDT5
+    model_class = FiDT5
 
     #load data
     tokenizer = transformers.T5Tokenizer.from_pretrained(model_name)
-    collator = src.data.Collator(opt.text_maxlength, tokenizer, answer_maxlength=opt.answer_maxlength)
+    collator = Collator(opt.text_maxlength, tokenizer, answer_maxlength=opt.answer_maxlength)
     
     # use golbal rank and world size to split the eval set on multiple gpus
-    train_examples = src.data.load_data(
+    train_examples = load_data(
         opt.train_data, 
         global_rank=opt.global_rank, 
         world_size=opt.world_size,
     )
-    train_dataset = src.data.Dataset(train_examples, opt.n_context)
+    train_dataset = Dataset(train_examples, opt.n_context)
     # use golbal rank and world size to split the eval set on multiple gpus
-    eval_examples = src.data.load_data(
+    eval_examples = load_data(
         opt.eval_data,
         global_rank=opt.global_rank,
         world_size=opt.world_size,
     )
-    eval_dataset = src.data.Dataset(eval_examples, opt.n_context)
-    # use golbal rank and world size to split the eval set on multiple gpus
-    #train_examples = train_data
-    #print(train_data[0])
-    #print('ciao')
+    eval_dataset = Dataset(eval_examples, opt.n_context)
     
     # use golbal rank and world size to split the eval set on multiple gpus
     t5 = transformers.T5ForConditionalGeneration.from_pretrained(model_name)
-    model = src.model.FiDT5(t5.config)
+    model = FiDT5(t5.config)
     model.load_t5(t5.state_dict())
     model = model.to(opt.local_rank)
-    optimizer, scheduler = src.util.set_optim(opt, model)
+    optimizer, scheduler = set_optim(opt, model)
     step, best_dev_em = 0, 0.0
     logger.info("Start training")
     train(
@@ -208,48 +192,3 @@ if __name__ == "__main__":
         best_dev_em,
         checkpoint_path
     )
-"""
-    eval_examples = eval_data
-    eval_dataset = src.data.Dataset(eval_examples, opt.n_context)
-
-    if not checkpoint_exists and opt.model_path == "none":
-        t5 = transformers.T5ForConditionalGeneration.from_pretrained(model_name)
-        model = src.model.FiDT5(t5.config)
-        model.load_t5(t5.state_dict())
-        model = model.to(opt.local_rank)
-        optimizer, scheduler = src.util.set_optim(opt, model)
-        step, best_dev_em = 0, 0.0
-    elif opt.model_path == "none":
-        load_path = checkpoint_path / 'checkpoint' / 'latest'
-        model, optimizer, scheduler, opt_checkpoint, step, best_dev_em = \
-            src.util.load(model_class, load_path, opt, reset_params=False)
-        logger.info(f"Model loaded from {load_path}")
-    else:
-        model, optimizer, scheduler, opt_checkpoint, step, best_dev_em = \
-            src.util.load(model_class, opt.model_path, opt, reset_params=True)
-        logger.info(f"Model loaded from {opt.model_path}")
-
-    model.set_checkpoint(opt.use_checkpoint)
-
-    if opt.is_distributed:
-        model = torch.nn.parallel.DistributedDataParallel(
-            model,
-            device_ids=[opt.local_rank],
-            output_device=opt.local_rank,
-            find_unused_parameters=False,
-        )
-
-    logger.info("Start training")
-    train(
-        model,
-        optimizer,
-        scheduler,
-        step,
-        train_dataset,
-        eval_dataset,
-        opt,
-        collator,
-        best_dev_em,
-        checkpoint_path
-    )
-"""
