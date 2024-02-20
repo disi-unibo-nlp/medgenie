@@ -33,7 +33,7 @@ python3 generate_contexts.py \
     --n 2 \
 ```
 
-* **NOT to include options in the question** (by default the options are included)
+* **NOT to include options in the question** (by default, the options are included)
 ```bash
     --no_options \
 ```
@@ -51,8 +51,50 @@ python3 preprocess.py \
     --contexts_no_ops path_to_generated_contexts_no_ops \
 ```
 
-### 1. Fusion-in-Decoder
+### 1. Fusion-in-Decoder (FiD)
+#### Train
+The first step in utilizing FiD as a reader is to train the model:
+```bash
+cd fid_reader
+python3 train.py \
+    --train_data train_data.json \
+    --eval_data eval_data.json \
+    --model_size base \
+    --per_gpu_batch_size 2 \
+    --accumulation_steps 4 \
+    --total_steps number_of_total_steps \
+```
+* **Contexts information**
+```bash
+    --n_context 5 \
+    --text_maxlength 512 \
+```
+#### Test
+Then, it is possible to evaluate the trained model:
+```bash
+cd fid_reader
+python3 test.py \
+    --model_path checkpoint_dir/my_experiment/my_model_dir/checkpoint/best_dev \
+    --eval_data eval_data.json \
+    --per_gpu_batch_size 2 \
+    --n_context 5 \
+```
+
 ### 2. In-Context-Learning zero-shot
+```bash
+cd icl_reader
+python3 benchmark.py \
+    --model_name HuggingFaceH4/zephyr-7b-beta \
+    --dataset_name medqa \
+    --n_options 4 \
+    --batch_size 8 \
+    --max_context_window 4000 \
+```
+* It is possible to specify **whether to use the contexts or not** (by default, contexts are used).
+```bash
+    --no_contexts \
+```
+
 
 ## Main accuracy results
 | Model | Ground (Source) | Learning | Params | MedQA | MedMCQA | MMLU | AVG (&darr;) |
