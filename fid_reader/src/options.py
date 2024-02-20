@@ -65,11 +65,6 @@ class Options():
                         help='article titles not included in passages')
         self.parser.add_argument('--n_context', type=int, default=1)
 
-    def add_preprocess_options(self):
-        self.parser.add_argument('--contexts_w_ops', type=str, default='none', help='path of contexts generated with options')
-        self.parser.add_argument('--contexts_no_ops', type=str, default='none', help='path of contexts generated without options')
-        self.parser.add_argument('--save_fid_input', type=str, default='none', help='path where to save the fid formatted file')
-        self.parser.add_argument('--dataset', type=str, default='none', help='path of dataset')
 
     def initialize_parser(self):
         # basic parameters
@@ -122,8 +117,7 @@ class Options():
 def get_options(use_reader=False,
                 use_retriever=False,
                 use_optim=False,
-                use_eval=False,
-                use_preprocess=False):
+                use_eval=False):
     options = Options()
     if use_reader:
         options.add_reader_options()
@@ -133,6 +127,4 @@ def get_options(use_reader=False,
         options.add_optim_options()
     if use_eval:
         options.add_eval_options()
-    if use_preprocess:
-        options.add_preprocess_options()
     return options.parse()
