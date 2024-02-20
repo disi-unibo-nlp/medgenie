@@ -2,10 +2,7 @@
 
 To Generate or to Retrieve? On the Effectiveness of Artificial Contexts for Medical Open-Domain Question Answering
 
-Summary of the abstarct with the only purpose of represents a main goal of the project (ask Chat with paper abstract)
-
 ## Generate Context 
-An example to generate two contexts for the train/validation/test splits of MedQA using PMC-LLaMA:<br/>
 Briefly explanation of how to generate contexts. Using [`generate_contexts.py`](./context-generation/generate_contexts.py).
 
 **Model parameters configuration**
