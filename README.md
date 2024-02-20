@@ -32,8 +32,22 @@ python3 generate_contexts.py \
     --n 2 \
 ```
 
+* **NOT to include options in the question** (by default the options are included)
+```bash
+    --no_options \
+```
 
 ## Reader
+### Input file format
+After the context generation is necessary to concatenate and convert all contexts into a single input file for the readers. <br/> For conversion use [`preprocess.py`](./utils/preprocess.py) as follow:
+```bash
+python3 preprocess.py \
+    --contexts_w_ops path_to_generated_contexts_w_ops \
+    --contexts_no_ops path_to_generated_contexts_no_ops \
+    --dataset path_to_original_dataset \
+    --save_fid_input path_where_to_save_the_input_file \
+```
+
 ### 1. Fusion-in-Decoder
 ### 2. In-Context-Learning zero-shot
 
