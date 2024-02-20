@@ -1,11 +1,13 @@
 # <img src="figures/hamlet.png" alt="hamlet icon" width="30">  MedGENIE
 
-To Generate or to Retrieve? On the Effectiveness of Artificial Contexts for Medical Open-Domain Question Answering
+## *To Generate or to Retrieve? On the Effectiveness of Artificial Contexts for Medical Open-Domain Question Answering*
+
+Offical source code of **MedGENIE**, the first generate-then-read framework for multiple-choice question answering in medicine. This method generates relevant information through domain-specific models before answering questions, outperforming traditional retrieval-based approaches. Tested on MedQA-USMLE, MedMCQA, and MMLU datasets within a 24GB VRAM limit, **MedGENIE** sets new benchmarks, proving that generated contexts can significantly enhance accuracy in medical question answering. 
 
 ## Generate Context 
-Briefly explanation of how to generate contexts. Using [`generate_contexts.py`](./context-generation/generate_contexts.py).
+Briefly explanation of how to generate contexts, using [`generate_contexts.py`](./context-generation/generate_contexts.py):
 
-**Model parameters configuration**
+* **Model parameters configuration**
 ```bash
 python3 generate_contexts.py \
     --model_name pmc-llama-13b-awq \
@@ -15,11 +17,19 @@ python3 generate_contexts.py \
     --top_p 1.0 \
     --max_tokens 512 \
     --use_beam_search False \
+```
+
+* **Dataset information**
+```bash
     --dataset_name medqa \
-    --n 2 \
     --train_set \
     --validation_set \
     --test_set \
+```
+
+* **Number of contexts**
+```bash
+    --n 2 \
 ```
 
 
