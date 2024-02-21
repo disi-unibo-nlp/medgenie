@@ -3,6 +3,8 @@
 
 Official source code of **MedGENIE**, the first generate-then-read framework for multiple-choice question answering in medicine. This method generates relevant information through domain-specific models before answering questions, outperforming traditional retrieval-based approaches. Tested on MedQA-USMLE, MedMCQA, and MMLU datasets within a 24GB VRAM limit, **MedGENIE** sets new benchmarks, proving that generated contexts can significantly enhance accuracy in medical question answering. 
 
+<img src="figures/medgenie.png" alt="medgenie architecture">
+
 ## Tables Of Contents
 - [Generate Context](#-generate-context)
 - [Reader](#-reader)
@@ -12,6 +14,9 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 - [Main results](#main-accuracy-results)
 
 ## 📝 Generate Context 
+
+<img src="figures/context_generation.png" alt="context generation architecture">
+
 Briefly explanation of how to generate contexts, using [`generate_contexts.py`](./context-generation/generate_contexts.py):
 
 * **Model parameters configuration**
@@ -63,6 +68,9 @@ python3 preprocess.py \
 ```
 
 ### 1. Fusion-in-Decoder (FiD)
+
+<img src="figures/fid_reader.png" alt="fid reader architecture">
+
 #### Train
 The first step in utilizing FiD as a reader is to train the model:
 ```bash
@@ -92,6 +100,9 @@ python3 test.py \
 ```
 
 ### 2. In-Context-Learning zero-shot
+
+<img src="figures/icl_reader.png" alt="icl reader architecture">
+
 This strategy consists in feed an **LLM reader** with few-shot open-domain question answering demonstrations and the test query preceded by its artificial context.
 
 ```bash
@@ -103,6 +114,7 @@ python3 benchmark.py \
     --batch_size 8 \
     --max_context_window 4000 \
 ```
+
 * It is possible to specify **whether to use the contexts or not** (by default, contexts are used).
 ```bash
     --no_contexts \
