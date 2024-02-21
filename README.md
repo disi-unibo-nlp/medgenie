@@ -6,12 +6,24 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 <img src="figures/medgenie.png" alt="medgenie architecture">
 
 ## 📌 Tables Of Contents
+- [Models used](#-models-used)
 - [Generate Context](#-generate-context)
 - [Reader](#-reader)
     - [Input file format](#-input-file-format)
     - [Fusion-in-Decoder](#1-fusion-in-decoder-fid)
     - [In-Context-Learning zero-shot](#2-in-context-learning-zero-shot)
 - [Main results](#main-accuracy-results)
+- [Citation](#-citation)
+
+
+
+## Models used
+|Model|Params|HuggingFace|
+|-------|---|:---:|
+|LLaMA-2-chat|7B|[<img src="./figures/logo_huggingface.svg" width="10%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
+|Zephyr-β|7B|[<img src="./figures/logo_huggingface.svg" width="10%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
+|MedGENIE-FID-Flan-T5 (our)|250M|[<img src="./figures/logo_huggingface.svg" width="10%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
+
 
 ## 📝 Generate Context 
 
@@ -155,7 +167,7 @@ python3 benchmark.py \
 ```bash
     --no_contexts \
 ```
-
+---
 
 ## Main accuracy results
 | Model | Ground (Source) | Learning | Params | MedQA | MedMCQA | MMLU | AVG (&darr;) |
@@ -178,6 +190,12 @@ python3 benchmark.py \
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Human (passing score) | | | | 60.0 | 50.0 | - | - |
 | Human (expert score) | | | | 87.0 | 90.0 | 89.8 | 89.8 |
+
+## 📚 Citation
+If you find this research useful, or if you utilize the code and models presented, please cite:
+```bibtex
+
+```
 
 
 
