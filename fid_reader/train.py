@@ -6,6 +6,7 @@
 
 import time
 import sys
+import os
 import json
 import torch
 import transformers
@@ -72,6 +73,7 @@ def train(model, optimizer, scheduler, step, train_dataset, eval_dataset, opt, c
 
             if step % opt.eval_freq == 0:
                 dev_em, answers = evaluate(model, eval_dataset, tokenizer, collator, opt)
+                os.makedirs('./out', exist_ok=True)
                 with open(f'out/preds_step_{step}.json', 'w') as f:
                     json.dump(answers, f, indent=4)
                 model.train()
