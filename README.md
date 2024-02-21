@@ -15,7 +15,9 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 
 ## 📝 Generate Context 
 
-<img src="figures/context_generation.png" alt="context generation architecture">
+<p align="center"> 
+    <img src="figures/context_generation.png" alt="context generation architecture" width=60%>
+</p>
 
 Briefly explanation of how to generate contexts, using [`generate_contexts.py`](./context-generation/generate_contexts.py):
 
@@ -69,7 +71,9 @@ python3 preprocess.py \
 
 ### 1. Fusion-in-Decoder (FiD)
 
-<img src="figures/fid_reader.png" alt="fid reader architecture">
+<p align="center"> 
+    <img src="figures/fid_reader.png" alt="fid reader architecture" width=60%>
+</p>
 
 #### Train
 The first step in utilizing FiD as a reader is to train the model:
@@ -101,7 +105,9 @@ python3 test.py \
 
 ### 2. In-Context-Learning zero-shot
 
-<img src="figures/icl_reader.png" alt="icl reader architecture">
+<p align="center"> 
+    <img src="figures/icl_reader.png" alt="icl reader architecture" width=60%>
+</p>
 
 This strategy consists in feed an **LLM reader** with few-shot open-domain question answering demonstrations and the test query preceded by its artificial context.
 
