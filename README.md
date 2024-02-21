@@ -5,7 +5,7 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 
 <img src="figures/medgenie.png" alt="medgenie architecture">
 
-## Tables Of Contents
+## 📌 Tables Of Contents
 - [Generate Context](#-generate-context)
 - [Reader](#-reader)
     - [Input file format](#-input-file-format)
@@ -68,12 +68,42 @@ python3 preprocess.py \
     --contexts_w_ops path_to_generated_contexts_w_ops \
     --contexts_no_ops path_to_generated_contexts_no_ops \
 ```
+Entry example:
+```
+{
+        "id": 0,
+        "question": "A junior orthopaedic surgery... Which of the following is the correct next action for the resident to take?\nA. Disclose the error to the patient and put it in the operative report\nB. Tell the attending that he cannot fail to disclose this mistake\nC. Report the physician to the ethics committee\nD. Refuse to dictate the operative report",
+        "target": "B",
+        "answers": [
+            "B"
+        ],
+        "ctxs": [
+            {
+                "text": "Inadvertent Cutting of Tendon is a complication, ..."
+            },
+            {
+                "text": "A resident is obligated to be..."
+            },
+            {
+                "text": "This is an example of error in the operative note, ..."
+            },
+            {
+                "text": "Residentserves as the interface between..."
+            },
+            {
+                "text": "As a matter of ethical practice, ..."
+            }
+        ]
+    }
+```
 
 ### 1. Fusion-in-Decoder (FiD)
 
 <p align="center"> 
     <img src="figures/fid_reader.png" alt="fid reader architecture" width=60%>
 </p>
+
+For the supervised regime, we train a lightweight FiD reader [(Izacard and Grave, 2021)](https://aclanthology.org/2021.eacl-main.74).
 
 #### Train
 The first step in utilizing FiD as a reader is to train the model:
