@@ -17,13 +17,14 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 
 
 
-## Models used
-|Model|Params|HuggingFace|
+## 🖇️ Models used
+|Model|Params|Link|
 |-------|---|:---:|
-|LLaMA-2-chat|7B|[<img src="./figures/logo_huggingface.svg" width="10%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
-|Zephyr-β|7B|[<img src="./figures/logo_huggingface.svg" width="10%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
-|MedGENIE-FID-Flan-T5 (our)|250M|[<img src="./figures/logo_huggingface.svg" width="10%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
+|LLaMA-2-chat|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
+|Zephyr-β|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
+|MedGENIE-FID-Flan-T5 (our)|250M|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
 
+---
 
 ## 📝 Generate Context 
 
