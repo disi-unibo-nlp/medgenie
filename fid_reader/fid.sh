@@ -1,4 +1,4 @@
-python3 fid/train_reader.py \
+python3 train.py \
         --train_data data/fid/TRAIN_FID_4_CTXS_pmc_llama_20percent_medmcqa.json \
         --eval_data DEV_FID_4_CTXS_pmc-llama-13b-awq_medmcqa.json \
         --model_size base \
