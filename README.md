@@ -9,7 +9,7 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 - [Models used](#-models-used)
 - [Generate Context](#-generate-context)
 - [Reader](#-reader)
-    - [Input file format](#-input-file-format)
+    - [Input file format](#-input-data-format)
     - [Fusion-in-Decoder](#1-fusion-in-decoder-fid)
     - [In-Context-Learning zero-shot](#2-in-context-learning-zero-shot)
 - [Main results](#main-accuracy-results)
@@ -70,7 +70,7 @@ To obtain a `multi-view` artifical contexts we can first generate a set of conte
 ## 👁️ Reader
 Each `reader` is equiped with custom background passages, allowing them to tackle medical questions effectively even without prior knowledge.
 
-### ⚙️ Input file format
+### ⚙️ Input data format
 After the context generation is necessary to concatenate and convert all contexts into a single input file for the readers. <br/> For conversion use [`preprocess.py`](./utils/preprocess.py) as follow:
 ```bash
 cd utils
