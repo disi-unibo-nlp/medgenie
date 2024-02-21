@@ -9,7 +9,7 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 - [Models used](#-models-used)
 - [Generate Context](#-generate-context)
 - [Reader](#-reader)
-    - [Input file format](#-input-data-format)
+    - [Input data format](#-input-data-format)
     - [Fusion-in-Decoder](#1-fusion-in-decoder-fid)
     - [In-Context-Learning zero-shot](#2-in-context-learning-zero-shot)
 - [Main results](#main-accuracy-results)
