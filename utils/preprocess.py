@@ -91,7 +91,8 @@ if __name__ == "__main__":
 
     for split in splits:
         dataset, max_samples, start_idx = get_split_info(datasets, split, args) 
-        contexts_fid_format = concat_and_convert(args, contexts_w_ops, contexts_no_ops, dataset)
+        data = dataset[start_idx:max_samples]
+        contexts_fid_format = concat_and_convert(args, contexts_w_ops, contexts_no_ops, data)
 
         with(open(f"{args.path_fid_input}/FID_{split}_{args.dataset_name}_{args.n_options}op.jsonl", "w")) as f:
             json.dump(contexts_fid_format, f, indent=4)
