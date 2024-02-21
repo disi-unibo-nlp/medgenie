@@ -3,7 +3,15 @@
 
 Official source code of **MedGENIE**, the first generate-then-read framework for multiple-choice question answering in medicine. This method generates relevant information through domain-specific models before answering questions, outperforming traditional retrieval-based approaches. Tested on MedQA-USMLE, MedMCQA, and MMLU datasets within a 24GB VRAM limit, **MedGENIE** sets new benchmarks, proving that generated contexts can significantly enhance accuracy in medical question answering. 
 
-## Generate Context 
+## Tables Of Contents
+- [Generate Context](#-generate-context)
+- [Reader](#-reader)
+    - [Input file format](#-input-file-format)
+    - [Fusion-in-Decoder](#1-fusion-in-decoder-fid)
+    - [In-Context-Learning zero-shot](#2-in-context-learning-zero-shot)
+- [Main results](#main-accuracy-results)
+
+## 📝 Generate Context 
 Briefly explanation of how to generate contexts, using [`generate_contexts.py`](./context-generation/generate_contexts.py):
 
 * **Model parameters configuration**
@@ -37,8 +45,12 @@ python3 generate_contexts.py \
     --no_options \
 ```
 
-## Reader
-### Input file format
+To obtain a `multi-view` artifical contexts we can first generate a set of contexts conditioned on *question* and *options* (**option-focused**), and then a set of contexts conditioned only on the *question* (**option-free**, with `--no_options`).
+
+## 👁️ Reader
+Each `reader` is equiped with custom background passages, allowing them to tackle medical questions effectively even without prior knowledge.
+
+### ⚙️ Input file format
 After the context generation is necessary to concatenate and convert all contexts into a single input file for the readers. <br/> For conversion use [`preprocess.py`](./utils/preprocess.py) as follow:
 ```bash
 cd utils
@@ -80,6 +92,8 @@ python3 test.py \
 ```
 
 ### 2. In-Context-Learning zero-shot
+This strategy consists in feed an **LLM reader** with few-shot open-domain question answering demonstrations and the test query preceded by its artificial context.
+
 ```bash
 cd icl_reader
 python3 benchmark.py \
