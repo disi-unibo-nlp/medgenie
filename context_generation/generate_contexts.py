@@ -56,9 +56,9 @@ def main(args, logger):
         data = dataset[start_idx:max_samples]
         logger.info(f"Start index: {start_idx}\nMax samples index: {max_samples}\nSamples considered: {max_samples-start_idx}")
 
-        if "medmcqa" in args.dataset_name or "medqa" in args.dataset_name and args.model_name in ["pmc-llama-13b-awq","BioMedGPT-LM-7B-awq"]:
+        if "medmcqa" in args.dataset_name or "mmlu" in args.dataset_name or "medqa" in args.dataset_name and args.model_name in ["pmc-llama-13b-awq","BioMedGPT-LM-7B-awq"]:
             
-            ids = dataset['id'][start_idx:max_samples] if args.dataset_name == "medmcqa" else list(range(start_idx, max_samples))
+            ids = dataset['id'][start_idx:max_samples] if args.dataset_name == "medmcqa" or args.dataset_name == "mmlu" else list(range(start_idx, max_samples))
             prompts = get_prompts(args, template=prompt_template, data=data, no_options=args.no_options)
             logger.info(f"First prompt example:\n{prompts[0]}")
             

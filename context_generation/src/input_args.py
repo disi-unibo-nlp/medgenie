@@ -7,7 +7,7 @@ from transformers import HfArgumentParser
 class ScriptArguments:
    
     model_name: Optional[str] = field(default="pmc-llama-13b-awq", metadata={"help": "the model name"})
-    dataset_name: Optional[str] = field(default="medmcqa", metadata={"help": "the dataset name", "choices":["medmcqa", "medqa"]})
+    dataset_name: Optional[str] = field(default="medmcqa", metadata={"help": "the dataset name", "choices":["medmcqa", "medqa", "mmlu"]})
     data_path_train: Optional[str] = field(default=None, metadata={"help": "the train dataset file path if you want to load data locally"})
     data_path_validation: Optional[str] = field(default=None, metadata={"help": "the validation dataset file path if you want to load data locally"})
     data_path_test: Optional[str] = field(default=None, metadata={"help": "the test dataset file path if you want to load data locally"})

@@ -78,7 +78,7 @@ def get_prompts_medqa(template, data, no_options=False):
 def get_prompts(args, template, data, no_options=False):
     if args.dataset_name == "medqa":
         return get_prompts_medqa(template, data, no_options)
-    if args.dataset_name == "medmcqa":
+    if args.dataset_name == "medmcqa" or args.dataset_name=="mmlu":
         return get_prompts_medmcqa(template, data, no_options)
     return []
 
@@ -132,6 +132,9 @@ def get_dataset_splits(args):
             with open(args.data_path_test, 'r') as f:
                 jsonl_content = f.read()
                 test_dataset = [json.loads(jline) for jline in jsonl_content.splitlines()]
+        if args.dataset_name == "mmlu":
+            if args.data_path_test and args.data_path_test.endswith('.csv'):
+                test_dataset = load_dataset('csv', data_files=args.data_path_test, split="train")
     
     return train_dataset, val_dataset, test_dataset
 
