@@ -7,6 +7,7 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 
 ## 📌 Tables Of Contents
 - [Models used](#-models-used)
+- [Datasets used](#-datasets-used)
 - [Generate Context](#-generate-context)
 - [Reader](#-reader)
     - [Input data format](#-input-data-format)
@@ -23,6 +24,14 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 |LLaMA-2-chat|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
 |Zephyr-β|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
 |MedGENIE-FID-Flan-T5 (our)|250M|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
+
+## 🖇️ Datasets used
+|Dataset|N. options|Link|
+|-------|:---:|:---:|
+|MedQA| 4 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-MedGENIE) |
+|MedQA| 5 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-5-opt-MedGENIE) |
+|MedMCQA| 4|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medmcqa-MedGENIE) |
+|MMLU medical| 4 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/mmlu-medical-MedGENIE) |
 
 ---
 
