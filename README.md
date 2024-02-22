@@ -51,8 +51,9 @@ python3 generate_contexts.py \
 ```bash
     --dataset_name medqa \
     --train_set \
-    --validation_set \
     --test_set \
+    --data_path_train train.jsonl \
+    --data_path_test test.jsonl \
 ```
 
 * **Number of contexts**
