@@ -133,12 +133,13 @@ The first step in utilizing FiD as a reader is to train the model:
 ```bash
 cd fid_reader
 python3 train.py \
-    --train_data train_data.json \
-    --eval_data eval_data.json \
+    --dataset_name "medqa" \
+    --n_options 4 \
     --model_size base \
     --per_gpu_batch_size 2 \
     --accumulation_steps 4 \
     --total_steps number_of_total_steps \
+    --name my_test \
 ```
 * **Contexts information**
 ```bash
@@ -150,8 +151,9 @@ Then, it is possible to evaluate the trained model:
 ```bash
 cd fid_reader
 python3 test.py \
-    --model_path checkpoint_dir/my_experiment/my_model_dir/checkpoint/best_dev \
-    --eval_data eval_data.json \
+    --model_path checkpoint/my_test/checkpoint/best_dev \
+    --dataset_name "medqa" \
+    --n_options 4 \
     --per_gpu_batch_size 2 \
     --n_context 5 \
 ```
