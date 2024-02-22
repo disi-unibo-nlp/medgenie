@@ -103,7 +103,10 @@ if __name__ == "__main__":
 
     collator_function = Collator(opt.text_maxlength, tokenizer)
     eval_examples = load_data(
-        opt.eval_data, 
+        opt.dataset_name,
+        opt.n_options,
+        split="validation" if "medmcqa" in opt.dataset_name else "test",
+        data_path=opt.eval_data, 
         global_rank=opt.global_rank, #use the global rank and world size attibutes to split the eval set on multiple gpus
         world_size=opt.world_size
     )

@@ -36,8 +36,10 @@ class Options():
                         help='save dataset with cross-attention scores')
 
     def add_reader_options(self):
-        self.parser.add_argument('--train_data', type=str, default='none', help='path of train data')
-        self.parser.add_argument('--eval_data', type=str, default='none', help='path of eval data')
+        self.parser.add_argument('--dataset_name', type=str, default='medqa', help='the dataset name ["medqa", "medmcqa", "mmlu"]')
+        self.parser.add_argument('--n_options', type=int, default=4)
+        self.parser.add_argument('--train_data', type=str, default=None, help='path of train data')
+        self.parser.add_argument('--eval_data', type=str, default=None, help='path of eval data')
         self.parser.add_argument('--model_size', type=str, default='base')
         self.parser.add_argument('--use_checkpoint', action='store_true', help='use checkpoint in the encoder')
         self.parser.add_argument('--text_maxlength', type=int, default=500, 

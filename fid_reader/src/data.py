@@ -7,6 +7,7 @@
 import torch
 import random
 import json
+from datasets import load_dataset
 import numpy as np
 
 class Dataset(torch.utils.data.Dataset):
@@ -117,29 +118,32 @@ class Collator(object):
 
         return (index, target_ids, target_mask, passage_ids, passage_masks)
 
-def load_data(data_path=None, global_rank=-1, world_size=-1):
-    
-    assert data_path
-    if data_path.endswith('.jsonl'):
-        with open(data_path, 'r') as file:
-            data = json.load(file)
-    elif data_path.endswith('.json'):
-        with open(data_path, 'r') as fin:
-            data = json.load(fin)
+def load_data(dataset_name, n_options, split, data_path=None, global_rank=-1, world_size=-1):
+
+    if data_path:
+        data = load_dataset('json', data_files=data_path, split="train")
+    else:   
+        if dataset_name=="medqa":
+            if n_options==4:
+                data = load_dataset('disi-unibo-nlp/medqa-MedGENIE', split=split)
+            else:
+                data = load_dataset('disi-unibo-nlp/medqa-5-opt-MedGENIE', split=split)
+        if dataset_name=="medmcqa":
+            data = load_dataset('disi-unibo-nlp/medmcqa-MedGENIE', split=split)
+        if dataset_name=="mmlu":
+            data = load_dataset('disi-unibo-nlp/mmlu-medical-MedGENIE', split=split)
+
     examples = []
+    
+    
     for k, example in enumerate(data):
         if global_rank > -1 and not k%world_size==global_rank:
             continue
-        #if data_path is not None and data_path.endswith('.jsonl'):
-            #example = json.load(example)
         if not 'id' in example:
             example['id'] = k
         for c in example['ctxs']:
             if not 'score' in c:
                 c['score'] = 1.0 / (k + 1)
         examples.append(example)
-    ## egrave: is this needed?
-    #if data_path is not None and data_path.endswith('.jsonl'):
-    #    data.close()
 
     return examples

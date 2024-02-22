@@ -161,14 +161,20 @@ if __name__ == "__main__":
     
     # use golbal rank and world size to split the eval set on multiple gpus
     train_examples = load_data(
-        opt.train_data, 
+        opt.dataset_name,
+        opt.n_options,
+        split = "train", 
+        data_path=opt.train_data,
         global_rank=opt.global_rank, 
         world_size=opt.world_size,
     )
     train_dataset = Dataset(train_examples, opt.n_context)
     # use golbal rank and world size to split the eval set on multiple gpus
     eval_examples = load_data(
-        opt.eval_data,
+        opt.dataset_name,
+        opt.n_options,
+        split="validation" if "medmcqa" in opt.dataset_name else "test",
+        data_path=opt.eval_data,
         global_rank=opt.global_rank,
         world_size=opt.world_size,
     )
