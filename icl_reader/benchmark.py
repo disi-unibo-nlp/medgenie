@@ -25,6 +25,9 @@ hf_key = os.getenv('HF_KEY')
 class ScriptArguments:
     model_name: Optional[str] = field(default="meta-llama/Llama-2-7b-chat-hf", metadata={"help": "model's HF directory or local path"})
     dataset_name: Optional[str] = field(default="medqa", metadata={"help": "the dataset name", "choices":["medmcqa", "medqa", "mmlu"]})
+    train_set: Optional[bool] = field(default=False, metadata={"help": "train set split is consider for context generation"})
+    validation_set: Optional[bool] = field(default=False, metadata={"help": "validation set split is consider for context generation"})
+    test_set: Optional[bool] = field(default=False, metadata={"help": "test set split is consider for context generation"})
     n_options: Optional[int] = field(default=4, metadata={"help": "Number of choices per question."})
     templates_dir: Optional[str] =  field(default="./templates", metadata={"help": "prompt templates directory"})
     out_preds_dir: Optional[str] =  field(default="./predictions", metadata={"help": "outputs directory"})
@@ -112,15 +115,15 @@ if __name__ == "__main__":
     else:
         if args.dataset_name == "medqa":
             if args.n_options == 4: 
-                test_set = load_dataset('disi-unibo-nlp/medqa-MedGENIE', split="test")
+                test_set = load_dataset('disi-unibo-nlp/medqa-MedGENIE', split="train" if args.train_set else "validation" if args.validation_set else "test")
             else:
-                test_set = load_dataset('disi-unibo-nlp/medqa-5-opt-MedGENIE', split="test")
+                test_set = load_dataset('disi-unibo-nlp/medqa-5-opt-MedGENIE', split="train" if args.train_set else "validation" if args.validation_set else "test")
 
         if args.dataset_name == "medmcqa":
-             test_set = load_dataset('disi-unibo-nlp/medmcqa-MedGENIE', split="test")
+             test_set = load_dataset('disi-unibo-nlp/medmcqa-MedGENIE', split="train" if args.train_set else "validation" if args.validation_set else "test")
         
         if args.dataset_name == "mmlu":
-             test_set = load_dataset('disi-unibo-nlp/mmlu-medical-MedGENIE', split="test")
+             test_set = load_dataset('disi-unibo-nlp/mmlu-medical-MedGENIE', split="train" if args.train_set else "validation" if args.validation_set else "test")
 
     MAX_INDEX = len(test_set) if args.max_samples == -1 else args.max_samples
     test_set = test_set.select(range(0,MAX_INDEX))
