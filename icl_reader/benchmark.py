@@ -5,6 +5,7 @@ import logging
 import os
 from dotenv import load_dotenv
 from tqdm import tqdm
+from datasets import load_dataset
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
 from huggingface_hub import login
@@ -106,25 +107,23 @@ if __name__ == "__main__":
     )
 
     logger.info(f"Dataset: {args.dataset_name}")
-    if args.dataset_name == "medqa":
+    if args.test_set_path:
+        test_set = load_dataset('csv' if args.test_set_path.endswith('.csv') else 'json', data_files=args.test_set_path)
+    else:
+        if args.dataset_name == "medqa":
+            if args.n_options == 4: 
+                test_set = load_dataset('disi-unibo-nlp/medqa-MedGENIE', split="test")
+            else:
+                test_set = load_dataset('disi-unibo-nlp/medqa-5-opt-MedGENIE', split="test")
 
-        if args.n_options == 4:
-            with open(args.test_set_path if args.test_set_path else '../data/fid/medqa/TEST_FID_medqa_4op_DEF_ABCD.json') as f:
-                test_set = json.load(f)    
-        else:
-            with open(args.test_set_path if args.test_set_path else '../data/fid/medqa/TEST_FID_medqa_ABCDE.json') as f:
-                test_set = json.load(f)    
-
-    if args.dataset_name == "medmcqa":
-        with open(args.test_set_path if args.test_set_path else '../data/fid/medmcqa/DEV_FID_medmcqa_5n.json') as f:
-            test_set = json.load(f)
-    
-    if args.dataset_name == "mmlu":
-        with open(args.test_set_path if args.test_set_path else '../data/fid/mmlu/mmlu_medical_fid.json') as f:
-            test_set = json.load(f)
+        if args.dataset_name == "medmcqa":
+             test_set = load_dataset('disi-unibo-nlp/medmcqa-MedGENIE', split="test")
+        
+        if args.dataset_name == "mmlu":
+             test_set = load_dataset('disi-unibo-nlp/mmlu-medical-MedGENIE', split="test")
 
     MAX_INDEX = len(test_set) if args.max_samples == -1 else args.max_samples
-    test_set = test_set[:MAX_INDEX]
+    test_set = test_set.select(range(0,MAX_INDEX))
     logger.info(f"Number of samples: {len(test_set)}")
     
     template = get_template(args)
