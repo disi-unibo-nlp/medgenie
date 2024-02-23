@@ -21,17 +21,19 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 ## 🖇️ Models used
 |Model|Params|Link|
 |-------|---|:---:|
-|LLaMA-2-chat|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
-|Zephyr-β|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
-|MedGENIE-FID-Flan-T5 (our)|250M|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
+|**LLaMA-2-chat**|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
+|**Zephyr-β**|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
+|**MedGENIE-FID-Flan-T5** (our)|250M|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
 
 ## 🖇️ Datasets used
-|Dataset|N. options|Link|
-|-------|:---:|:---:|
-|MedQA| 4 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-MedGENIE) |
-|MedQA| 5 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-5-opt-MedGENIE) |
-|MedMCQA| 4|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medmcqa-MedGENIE) |
-|MMLU medical| 4 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/mmlu-medical-MedGENIE) |
+|Dataset|N. options|Original|FiD format|
+|-------|:---:|:---:|:---:|
+|**MedQA**| 4 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1ImYUSLk9JbgHXOemfvyiDiirluZHPeQw/view)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-MedGENIE) |
+|**MedQA**| 5 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1ImYUSLk9JbgHXOemfvyiDiirluZHPeQw/view)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-5-opt-MedGENIE) |
+|**MedMCQA**| 4|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/medmcqa)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medmcqa-MedGENIE) |
+|**MMLU medical**✲| 4 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/lukaemon/mmlu)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/mmlu-medical-MedGENIE) |
+
+✲ For the **MMLU medical** dataset, the chosen subjects are: `high_school_biology`, `college_biology`, `college_medicine`, `professional_medicine`, `medical_genetics`, `virology`, `clinical_knowledge`, `nutrition`, `anatomy`
 
 ---
 
