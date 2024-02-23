@@ -6,42 +6,36 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 <img src="figures/medgenie.png" alt="medgenie architecture">
 
 ## 📌 Tables Of Contents
-- [Model checkpoint](#-model-checkpoint)
-- [Models used](#-models-used)
-- [Datasets used](#-datasets-used)
+- [Models](#-models)
+- [Datasets](#-datasets)
 - [Generate Context](#-generate-context)
 - [Reader](#-reader)
     - [Input data format](#-input-data-format)
-    - [Fusion-in-Decoder](#1-fusion-in-decoder-fid)
-    - [In-Context-Learning zero-shot](#2-in-context-learning-zero-shot)
+    - [FID](#1-fusion-in-decoder-fid)
+    - [ICL](#2-in-context-learning-icl)
 - [Main results](#main-accuracy-results)
 - [Citation](#-citation)
 
-## 🖇 Model checkpoint
+## 🖇 Models 
 
-|Model|Params|Train Dataset|Link|
+|Model|Params|Role|Checkpoint|
 |-------|---|---|:---:|
-|**MedGENIE-FID-Flan-T5**|250M|MedQA|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
-|**MedGENIE-FID-Flan-T5**|250M|MedMCQA|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medmcqa)|
+|**MedGENIE-fid-flan-t5-base-medqa**|250M|👁️ FID-Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
+|**MedGENIE-fid-flan-t5-base-medmcqa**|250M|👁️ FID-Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medmcqa)|
+|**LLaMA-2-chat**|7B|👁️ ICL-Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
+|**Zephyr-β**|7B|👁️ ICL-Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
+|**PMC-LLaMA** (AWQ)|13B|📝 Context Generator|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/pmc-llama-13b-awq)|
 
-## 🖇 Models used
+## 🖇 Datasets 
 
-|Model|Params|Role|Link|
-|-------|---|---|:---:|
-|**LLaMA-2-chat**|7B|👁️ Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
-|**Zephyr-β**|7B|👁️ Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
-|**PMC-LLaMA**|13B|📝 Context Generator|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/pmc-llama-13b-awq)|
-
-## 🖇 Datasets used
-
-|Dataset|N. options|Original|FiD format|
+|Dataset|N. options|Original|MedGENIE format|
 |-------|:---:|:---:|:---:|
 |**MedQA**| 4 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1ImYUSLk9JbgHXOemfvyiDiirluZHPeQw/view)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-MedGENIE) |
 |**MedQA**| 5 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1ImYUSLk9JbgHXOemfvyiDiirluZHPeQw/view)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-5-opt-MedGENIE) |
 |**MedMCQA**| 4|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/medmcqa)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medmcqa-MedGENIE) |
-|**MMLU medical**✲| 4 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/lukaemon/mmlu)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/mmlu-medical-MedGENIE) |
+|**MMLU medical**<sup>*</sup>| 4 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/lukaemon/mmlu)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/mmlu-medical-MedGENIE) |
 
-✲ For the **MMLU medical** dataset, the chosen subjects are: `high_school_biology`, `college_biology`, `college_medicine`, `professional_medicine`, `medical_genetics`, `virology`, `clinical_knowledge`, `nutrition`, `anatomy`
+<sup>*</sup> For the **MMLU medical** dataset, the chosen subjects are: `high_school_biology`, `college_biology`, `college_medicine`, `professional_medicine`, `medical_genetics`, `virology`, `clinical_knowledge`, `nutrition`, `anatomy`
 
 ---
 
@@ -126,7 +120,7 @@ Entry example:
     }
 ```
 
-### 1. Fusion-in-Decoder (FiD)
+### 1. Fusion-In-Decoder (FID)
 
 For the supervised regime, we train a lightweight FiD reader [(Izacard and Grave, 2021)](https://aclanthology.org/2021.eacl-main.74).
 
@@ -160,7 +154,7 @@ python3 test.py \
     --n_context 5 \
 ```
 
-### 2. In-Context-Learning zero-shot
+### 2. In-Context-Learning (ICL)
 
 This strategy consists in feed an **LLM reader** with few-shot open-domain question answering demonstrations and the test query preceded by its artificial context.
 
