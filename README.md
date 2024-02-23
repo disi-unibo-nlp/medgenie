@@ -122,10 +122,10 @@ Entry example:
 
 ### 1. Fusion-In-Decoder (FID)
 
-For the supervised regime, we train a lightweight FiD reader [(Izacard and Grave, 2021)](https://aclanthology.org/2021.eacl-main.74).
+For the supervised regime, we train a lightweight FID reader [(Izacard and Grave, 2021)](https://aclanthology.org/2021.eacl-main.74).
 
 #### Train
-The first step in utilizing FiD as a reader is to train the model:
+The first step in utilizing FID as a reader is to train the model:
 ```bash
 cd fid_reader
 python3 train.py \
