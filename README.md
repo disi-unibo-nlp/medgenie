@@ -30,10 +30,10 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 
 |Dataset|N. options|Original|MedGENIE format|
 |-------|:---:|:---:|:---:|
-|**MedQA**| 4 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1ImYUSLk9JbgHXOemfvyiDiirluZHPeQw/view)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-MedGENIE) |
-|**MedQA**| 5 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1ImYUSLk9JbgHXOemfvyiDiirluZHPeQw/view)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-5-opt-MedGENIE) |
-|**MedMCQA**| 4|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/medmcqa)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medmcqa-MedGENIE) |
-|**MMLU medical**<sup>*</sup>| 4 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/lukaemon/mmlu)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/mmlu-medical-MedGENIE) |
+|**MedQA**| 4 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1ImYUSLk9JbgHXOemfvyiDiirluZHPeQw/view)|[<img src="./figures/logo_huggingface.svg" width="22%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-MedGENIE) |
+|**MedQA**| 5 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1ImYUSLk9JbgHXOemfvyiDiirluZHPeQw/view)|[<img src="./figures/logo_huggingface.svg" width="22%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-5-opt-MedGENIE) |
+|**MedMCQA**| 4|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/medmcqa)|[<img src="./figures/logo_huggingface.svg" width="22%">](https://huggingface.co/datasets/disi-unibo-nlp/medmcqa-MedGENIE) |
+|**MMLU medical**<sup>*</sup>| 4 |[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/lukaemon/mmlu)|[<img src="./figures/logo_huggingface.svg" width="22%">](https://huggingface.co/datasets/disi-unibo-nlp/mmlu-medical-MedGENIE) |
 
 <sup>*</sup> For the **MMLU medical** dataset, the chosen subjects are: `high_school_biology`, `college_biology`, `college_medicine`, `professional_medicine`, `medical_genetics`, `virology`, `clinical_knowledge`, `nutrition`, `anatomy`
 
