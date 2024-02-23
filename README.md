@@ -6,6 +6,7 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 <img src="figures/medgenie.png" alt="medgenie architecture">
 
 ## 📌 Tables Of Contents
+- [Model checkpoint](#-model-checkpoint)
 - [Models used](#-models-used)
 - [Datasets used](#-datasets-used)
 - [Generate Context](#-generate-context)
@@ -16,16 +17,23 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 - [Main results](#main-accuracy-results)
 - [Citation](#-citation)
 
+## 🖇 Model checkpoint
 
+|Model|Params|Train Dataset|Link|
+|-------|---|---|:---:|
+|**MedGENIE-FID-Flan-T5**|250M|MedQA|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
+|**MedGENIE-FID-Flan-T5**|250M|MedMCQA|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medmcqa)|
 
-## 🖇️ Models used
-|Model|Params|Link|
-|-------|---|:---:|
-|**LLaMA-2-chat**|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
-|**Zephyr-β**|7B|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
-|**MedGENIE-FID-Flan-T5** (our)|250M|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/MedGENIE-fid-flan-t5-base-medqa)|
+## 🖇 Models used
 
-## 🖇️ Datasets used
+|Model|Params|Role|Link|
+|-------|---|---|:---:|
+|**LLaMA-2-chat**|7B|👁️ Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
+|**Zephyr-β**|7B|👁️ Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
+|**PMC-LLaMA**|13B|📝 Context Generator|[<img src="./figures/logo_huggingface.svg" width="30%">]()|
+
+## 🖇 Datasets used
+
 |Dataset|N. options|Original|FiD format|
 |-------|:---:|:---:|:---:|
 |**MedQA**| 4 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1ImYUSLk9JbgHXOemfvyiDiirluZHPeQw/view)|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/disi-unibo-nlp/medqa-MedGENIE) |
@@ -75,10 +83,10 @@ python3 generate_contexts.py \
 
 To obtain a `multi-view` artifical contexts we can first generate a set of contexts conditioned on *question* and *options* (**option-focused**), and then a set of contexts conditioned only on the *question* (**option-free**, with `--no_options`).
 
-## 👁️ Reader
+## 👁 Reader
 Each `reader` is equiped with custom background passages, allowing them to tackle medical questions effectively even without prior knowledge.
 
-### ⚙️ Input data format
+### ⚙ Input data format
 After the context generation is necessary to concatenate and convert all contexts into a single input file for the readers. <br/> For conversion use [`preprocess.py`](./utils/preprocess.py) as follow:
 ```bash
 cd utils
