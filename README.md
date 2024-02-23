@@ -30,7 +30,7 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 |-------|---|---|:---:|
 |**LLaMA-2-chat**|7B|👁️ Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf)|
 |**Zephyr-β**|7B|👁️ Reader|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)|
-|**PMC-LLaMA**|13B|📝 Context Generator|[<img src="./figures/logo_huggingface.svg" width="30%">]()|
+|**PMC-LLaMA**|13B|📝 Context Generator|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/disi-unibo-nlp/pmc-llama-13b-awq)|
 
 ## 🖇 Datasets used
 
