@@ -186,11 +186,11 @@ python3 benchmark.py \
 | LLaMA-2-chat* (7B) | Ø | 36.9 | 35.0 | 49.3 | 40.4 |
 | Codex* (175B) | Ø | 52.5 | 50.9 | - | - |
 |---|---|---|---|---|---|
-| MedGENIE-Zephyr-β* (7B) | G (PMC-LLaMA) | 59.7 <span style="color:green">(+10.4)</span> | 51.0 <span style="color:green">(+7.6)</span> | 66.1 <span style="color:green">(+5.4)</span> | 58.9 <span style="color:green">(+7.8)</span> |
+| MedGENIE-Zephyr-β* (7B) | G (PMC-LLaMA) | 59.7 | 51.0  | 66.1  | 58.9  |
 | MedGENIE-FID-Flan-T5 (250M) | G (PMC-LLaMA) | 53.1 | 52.1 | 59.9 | 55.0 |
 | Zephyr-β* (7B) | R (MedWiki) | 50.5 | 47.0 | 66.9 | 54.8 |
 | VOD (220M) | R (MedWiki) | 45.8 | 58.3 | 56.8 | 53.6 |
-| MedGENIE-LLaMA-2-chat* (7B) | G (PMC-LLaMA) | 52.6 <span style="color:green">(+15.7)</span> | 44.8 <span style="color:green">(+9.8)</span> | 58.8 <span style="color:green">(+9.5)</span> | 52.1 <span style="color:green">(+11.7)</span> |
+| MedGENIE-LLaMA-2-chat* (7B) | G (PMC-LLaMA) | 52.6 | 44.8  | 58.8 | 52.1  |
 | Mistral-Instruct* (7B) | R (MedWiki) | 45.1 | 44.3 | 58.5 | 49.3 |
 | LLaMA-2-chat* (7B) | R (MedWiki) | 37.2 | 37.2 | 52.0 | 42.1 |
 
