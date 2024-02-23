@@ -56,10 +56,13 @@ def get_question_and_answer(args, question_data):
 def concat_and_convert(args, contexts_w_ops, contexts_no_ops, dataset):
     contexts_fid_format = []
     for id_question in range(len(dataset)):
-
-        context_3n = contexts_w_ops[str(id_question)]["contexts"]
-        context_2n = contexts_no_ops[str(id_question)]["contexts"]
-        ctxs = context_3n + context_2n
+        
+        if str(id_question) in contexts_w_ops and str(id_question) in contexts_no_ops:
+            context_3n = contexts_w_ops[str(id_question)]["contexts"]
+            context_2n = contexts_no_ops[str(id_question)]["contexts"]
+            ctxs = context_3n + context_2n
+        else:
+            ctxs = ["","","","",""]
         
         question_w_ops, answer = get_question_and_answer(args, dataset[id_question])
         
