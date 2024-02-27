@@ -70,7 +70,7 @@ def concat_and_convert(args, contexts_w_ops, contexts_no_ops, dataset):
         question_w_ops, answer = get_question_and_answer(args, dataset[id_question])
         
         contexts_fid_format.append({
-            "id": str(id_question),
+            "id": id_question,
             "question": question_w_ops,
             "target": answer,
             "answers": [answer],
