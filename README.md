@@ -90,6 +90,7 @@ python3 preprocess.py \
     --data_path_test path_to_test_set \
     --contexts_w_ops path_to_generated_contexts_w_ops \
     --contexts_no_ops path_to_generated_contexts_no_ops \
+    --n_context number_of_total_contexts \
 ```
 Entry example:
 ```
