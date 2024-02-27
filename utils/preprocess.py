@@ -10,17 +10,18 @@ from context_generation.src.utils import get_dataset_splits, get_split_info
 # Define and parse arguments.
 @dataclass
 class ScriptArguments:
-    dataset_name: Optional[str] = field(default="medqa", metadata={"help": "the dataset name", "choices":["medmcqa", "medqa", "mmlu"]})
-    data_path_train: Optional[str] = field(default=None, metadata={"help": "the train dataset file path if you want to load data locally"})
-    data_path_validation: Optional[str] = field(default=None, metadata={"help": "the validation dataset file path if you want to load data locally"})
-    data_path_test: Optional[str] = field(default=None, metadata={"help": "the test dataset file path if you want to load data locally"})
-    train_set: Optional[bool] = field(default=False, metadata={"help": "train set split is consider for context generation"})
-    validation_set: Optional[bool] = field(default=False, metadata={"help": "validation set split is consider for context generation"})
-    test_set: Optional[bool] = field(default=False, metadata={"help": "test set split is consider for context generation"})
+    dataset_name: Optional[str] = field(default="medqa", metadata={"help": "The dataset name.", "choices":["medmcqa", "medqa", "mmlu"]})
+    data_path_train: Optional[str] = field(default=None, metadata={"help": "The train dataset file path if you want to load data locally."})
+    data_path_validation: Optional[str] = field(default=None, metadata={"help": "The validation dataset file path if you want to load data locally."})
+    data_path_test: Optional[str] = field(default=None, metadata={"help": "The test dataset file path if you want to load data locally."})
+    train_set: Optional[bool] = field(default=False, metadata={"help": "Train set split is consider for context generation."})
+    validation_set: Optional[bool] = field(default=False, metadata={"help": "Validation set split is consider for context generation."})
+    test_set: Optional[bool] = field(default=False, metadata={"help": "Test set split is consider for context generation."})
     n_options: Optional[int] = field(default=4, metadata={"help": "Number of choices per question."})
-    contexts_w_ops: str = field(default=None, metadata={"help": "path of contexts generated with options"})
-    contexts_no_ops: str = field(default=None, metadata={"help": "path of contexts generated without options"})
-    path_fid_input: str = field(default="./" , metadata={"help": "path where to save the fid formatted file"})
+    contexts_w_ops: str = field(default=None, metadata={"help": "Path of contexts generated with options."})
+    contexts_no_ops: str = field(default=None, metadata={"help": "Path of contexts generated without options."})
+    n_context: Optional[int] = field(default=5, metadata={"help": "Number of total contexts used."})
+    path_fid_input: str = field(default="./" , metadata={"help": "Path where to save the fid formatted file."})
     max_samples_train: Optional[int] = field(default=-1, metadata={"help": "Maximum number of data to process in train set. Default is -1 to process all data."})
     max_samples_validation: Optional[int] = field(default=-1, metadata={"help": "Maximum number of data to process in validation set. Default is -1 to process all data."})
     max_samples_test: Optional[int] = field(default=-1, metadata={"help": "Maximum number of data to process in test set. Default is -1 to process all data."})
@@ -58,11 +59,13 @@ def concat_and_convert(args, contexts_w_ops, contexts_no_ops, dataset):
     for id_question in range(len(dataset)):
         
         if str(id_question) in contexts_w_ops and str(id_question) in contexts_no_ops:
-            context_3n = contexts_w_ops[str(id_question)]["contexts"]
-            context_2n = contexts_no_ops[str(id_question)]["contexts"]
-            ctxs = context_3n + context_2n
+            n_context_w_ops = contexts_w_ops[str(id_question)]["contexts"]
+            n_context_no_ops = contexts_no_ops[str(id_question)]["contexts"]
+            ctxs = n_context_w_ops + n_context_no_ops
         else:
-            ctxs = ["","","","",""]
+            ctxs = ["" for _ in range(args.n_context)]
+        
+        assert(len(ctxs) == args.n_context)
         
         question_w_ops, answer = get_question_and_answer(args, dataset[id_question])
         
@@ -70,7 +73,7 @@ def concat_and_convert(args, contexts_w_ops, contexts_no_ops, dataset):
             "id": str(id_question),
             "question": question_w_ops,
             "target": answer,
-            "answers": answer,
+            "answers": [answer],
             "ctxs": [{"text":cont} for cont in ctxs]
 
         })
@@ -97,6 +100,6 @@ if __name__ == "__main__":
         data = dataset[start_idx:max_samples]
         contexts_fid_format = concat_and_convert(args, contexts_w_ops, contexts_no_ops, data)
 
-        with(open(f"{args.path_fid_input}/FID_{split}_{args.dataset_name}_{args.n_options}op.jsonl", "w")) as f:
+        with(open(f"{args.path_fid_input}/FID_{split}_{args.dataset_name}_{args.n_options}op.json", "w")) as f:
             json.dump(contexts_fid_format, f, indent=4)
 
