@@ -8,6 +8,7 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 ## 📌 Tables Of Contents
 - [Models](#-models)
 - [Datasets](#-datasets)
+- [Quickstart](#-quickstart)
 - [Generate Context](#-generate-context)
 - [Reader](#-reader)
     - [Input data format](#-input-data-format)
@@ -38,6 +39,26 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 <sup>*</sup> For the **MMLU medical** dataset, the chosen subjects are: `high_school_biology`, `college_biology`, `college_medicine`, `professional_medicine`, `medical_genetics`, `virology`, `clinical_knowledge`, `nutrition`, `anatomy`
 
 ---
+
+
+## 🚀 Quickstart
+Begin by cloning the repository:
+
+```bash
+git clone https://github.com/disi-unibo-nlp/medgenie.git
+cd medgenie
+```
+
+Next, set up a **Docker container** to install the necessary dependencies as follows:
+```bash
+docker build -t medgenie .
+```
+
+Execute the container using `docker run`.
+```bash
+docker run -v /path_to/medgenie:/medgenie --rm --gpus device=$CUDA_VISIBLE_DEVICES -it medgenie bash
+```
+
 
 ## 📝 Generate Context 
 
@@ -81,7 +102,7 @@ To obtain a `multi-view` artifical contexts we can first generate a set of conte
 Each `reader` is equiped with custom background passages, allowing them to tackle medical questions effectively even without prior knowledge.
 
 ### ⚙ Input data format
-After the context generation is necessary to concatenate and convert all contexts into a single input file for the readers. <br/> For conversion use [`preprocess.py`](./utils/preprocess.py) as follow:
+After the context generation is necessary to concatenate and convert all contexts into a single input file for the readers. <br/> For conversion use [`preprocess.py`](./utils/preprocess.py) as follows:
 ```bash
 cd utils
 python3 preprocess.py \
