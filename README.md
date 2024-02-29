@@ -1,3 +1,4 @@
+<div align="center"><img src="figures/logo_medgenie.png" width="15%"> </div>
 <h1 align="center"> MedGENIE </h1>
 <h2 align="center"><img src="figures/hamlet.png" alt="hamlet icon" width="25"> To Generate or to Retrieve? <br>  On the Effectiveness of Artificial Contexts for Medical Open-Domain Question Answering  </h2>
 
