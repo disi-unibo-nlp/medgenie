@@ -1,7 +1,7 @@
 #!/bin/bash
 
 python3 generate_contexts.py \
-    --model_name pmc-llama-13b-awq \
+    --model_name disi-unibo-nlp/pmc-llama-13b-awq \
     --dataset_name medqa \
     --batch_size 8 \
     --n 2 \
@@ -18,6 +18,3 @@ python3 generate_contexts.py \
     --data_path_validation data/medqa/dev/dev.jsonl \
     --out_name medqa_pmc_llama_2n_no_options \
     --no_options
-    #--max_samples_train 40 \
-    #--max_samples_validation 16 \
-    #--max_samples_test 8
