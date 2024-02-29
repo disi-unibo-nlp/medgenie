@@ -5,7 +5,7 @@ LABEL maintainer="disi-unibo-nlp"
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Set work directory
-WORKDIR /to-generate-or-to-retrieve
+WORKDIR /medgenie
 
 # Install general-purpose dependencies
 RUN apt-get update -y && \
