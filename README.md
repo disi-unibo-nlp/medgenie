@@ -69,7 +69,7 @@ Briefly explanation of how to generate contexts, using [`generate_contexts.py`](
 ```bash
 cd context_generation
 python3 generate_contexts.py \
-    --model_name pmc-llama-13b-awq \
+    --model_name disi-unibo-nlp/pmc-llama-13b-awq \
     --batch_size 8 \
     --temperature 0.9 \
     --frequency_penalty 1.95 \
