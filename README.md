@@ -83,8 +83,8 @@ python3 generate_contexts.py \
     --dataset_name medqa \
     --train_set \
     --test_set \
-    --data_path_train train.jsonl \
-    --data_path_test test.jsonl \
+    --data_path_train train.json \
+    --data_path_test test.json \
 ```
 
 * **Number of contexts**
