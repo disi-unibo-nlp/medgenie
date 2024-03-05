@@ -224,7 +224,14 @@ python3 benchmark.py \
 ## 📚 Citation
 If you find this research useful, or if you utilize the code and models presented, please cite:
 ```bibtex
-
+@misc{frisoni2024generate,
+      title={To Generate or to Retrieve? On the Effectiveness of Artificial Contexts for Medical Open-Domain Question Answering}, 
+      author={Giacomo Frisoni and Alessio Cocchieri and Alex Presepi and Gianluca Moro and Zaiqiao Meng},
+      year={2024},
+      eprint={2403.01924},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
 ```
 
 
