@@ -153,9 +153,9 @@ The first step in utilizing FID as a reader is to train the model:
 cd fid_reader
 python3 train.py \
     --dataset_name "medqa" \
-    --n_options 4 \
+    --n_options 5 \
     --model_size base \
-    --per_gpu_batch_size 2 \
+    --per_gpu_batch_size 1 \
     --accumulation_steps 4 \
     --total_steps number_of_total_steps \
     --name my_test \
@@ -163,7 +163,7 @@ python3 train.py \
 * **Contexts information**
 ```bash
     --n_context 5 \
-    --text_maxlength 512 \
+    --text_maxlength 1024 \
 ```
 #### Test
 Then, it is possible to evaluate the trained model:
@@ -173,7 +173,7 @@ python3 test.py \
     --model_path checkpoint/my_test/checkpoint/best_dev \
     --dataset_name "medqa" \
     --n_options 4 \
-    --per_gpu_batch_size 2 \
+    --per_gpu_batch_size 1 \
     --n_context 5 \
 ```
 
