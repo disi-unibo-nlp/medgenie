@@ -37,7 +37,8 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 |**MedMCQA**| 4|[<img src="./figures/logo_huggingface.svg" width="30%">](https://huggingface.co/datasets/medmcqa)|[<img src="./figures/logo_huggingface.svg" width="22%">](https://huggingface.co/datasets/disi-unibo-nlp/medmcqa-MedGENIE) |
 |**MMLU medical**<sup>*</sup>| 4 |[<img src="./figures/google_drive_icon.png" width="30%">](https://drive.google.com/file/d/1vKqPWUle-BQlfvETjK3dUp-5BdeCHp3O/view?usp=sharing)|[<img src="./figures/logo_huggingface.svg" width="22%">](https://huggingface.co/datasets/disi-unibo-nlp/mmlu-medical-MedGENIE) |
 
-<sup>*</sup> For the **MMLU medical** dataset, the chosen subjects are: `high_school_biology`, `college_biology`, `college_medicine`, `professional_medicine`, `medical_genetics`, `virology`, `clinical_knowledge`, `nutrition`, `anatomy`
+<sup>*</sup> For the **MMLU medical** dataset, the chosen subjects are: `high_school_biology`, `college_biology`, `college_medicine`, `professional_medicine`, `medical_genetics`, `virology`, `clinical_knowledge`, `nutrition`, `anatomy`. <br>
+From: https://huggingface.co/datasets/lukaemon/mmlu
 
 ---
 
