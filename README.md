@@ -220,6 +220,16 @@ python3 benchmark.py \
 
 *zero/few-shot inference
 
+## RAGAS Evaluation
+| Metric | Dataset| N. Samples | Answer | G | R |
+| --- | --- | :---: | --- | :---: | :---: |
+| Context Precision | MedQA | 150 | positive | 87.9 | 48.6 |
+| Context Recall | MedQA | 150 | positive | 93.4 | 76.2 |
+| Faithfulness | MedQA | 150 | positive | 59.7 | 23.8 |
+| --- | --- | --- | --- | --- | --- |
+| Context Precision | MedQA| 50 | negative | 55.3 | 29.5 |
+| Context Recall | MedQA | 50 | negative | 59.2 | 32.0 |
+| Faithfulness | MedQA | 50 | negative | 56.5 | 15.6 |
 
 ## 📚 Citation
 If you find this research useful, or if you utilize the code and models presented, please cite:
