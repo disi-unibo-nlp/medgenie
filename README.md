@@ -209,6 +209,7 @@ python3 benchmark.py \
 | Mistral-Instruct* (7B) | Ø | 41.1 | 40.2 | 55.8 | 45.7 |
 | LLaMA-2-chat* (7B) | Ø | 36.9 | 35.0 | 49.3 | 40.4 |
 | Codex* (175B) | Ø | 52.5 | 50.9 | - | - |
+| LLaMA-3-Instruct (8B)| Ø | 59.2 | - | 69.0 |
 |---|---|---|---|---|---|
 | MedGENIE-Zephyr-β* (7B) | G (PMC-LLaMA) | 59.7 | 51.0  | 66.1  | 58.9  |
 | MedGENIE-FID-Flan-T5 (250M) | G (PMC-LLaMA) | 53.1 | 52.1 | 59.9 | 55.0 |
@@ -217,6 +218,7 @@ python3 benchmark.py \
 | MedGENIE-LLaMA-2-chat* (7B) | G (PMC-LLaMA) | 52.6 | 44.8  | 58.8 | 52.1  |
 | Mistral-Instruct* (7B) | R (MedWiki) | 45.1 | 44.3 | 58.5 | 49.3 |
 | LLaMA-2-chat* (7B) | R (MedWiki) | 37.2 | 37.2 | 52.0 | 42.1 |
+| LLaMA-3-Instruct (8B)| G (PMC-LLaMA) | 61.7 | - | 67.1 |
 
 *zero/few-shot inference
 
