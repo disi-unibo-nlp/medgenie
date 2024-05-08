@@ -1,0 +1,32 @@
+[INST] <<SYS>>
+You are a medical expert. Your task is to answer questions related to medical exams based on a given context. Answer as concise as possible. Your answer must be always a string of one line starting with "The answer is", followed by your final choice. Nothing more.
+<</SYS>>
+Make a choice based on the context and question. Take the following two questions as examples.
+
+# Example 1
+### Context:
+The presence of splenomegaly and the finding of immature granulocytic cells in the bone marrow are consistent with this diagnosis. Chronic myeloid leukemia (CML) is characterized by an abnormality involving the ABL1 gene on chromosome 9q, which results in unregulated tyrosine kinase activity. The JAK-STAT pathway, loss of function of the APC gene, altered expression of retinoic acid receptor genes, or induced expression PDGFRA are not associated with CML; these abnormalities can be seen in other types of leukemia or myelodysplastic syndromes (MDS).
+
+### Question:
+A 52-year-old woman comes to the physician because of a 6-month history of generalized fatigue, low-grade fever, and a 10-kg (22-lb) weight loss. Physical examination shows generalized pallor and splenomegaly. Her hemoglobin concentration is 7.5 g/dL and leukocyte count is 41,800/mm3. Leukocyte alkaline phosphatase activity is low. Peripheral blood smear shows basophilia with myelocytes and metamyelocytes. Bone marrow biopsy shows cellular hyperplasia with proliferation of immature granulocytic cells. Which of the following mechanisms is most likely responsible for this patient's condition?
+(A) Cytokine-independent activation of the JAK-STAT pathway
+(B) Loss of function of the APC gene
+(C) Altered expression of the retinoic acid receptor gene
+(D) Unregulated expression of the ABL1 gene
+
+The answer is (D) Unregulated expression of the ABL1 gene.
+
+# Example 2
+### Context:
+Post-translational modifications (PTMs) are covalent modifications to a polypeptide following its synthesis by the ribosome. The chemically-tagged protein mentioned in the question acts as an E3 ubiquitin ligase by catalyzing the attachment of ubiquitin molecules to lysine residues on targeted proteins, marking them for degradation. Glycosylation involves adding sugar molecules; phosphorylation/dephosphorylation adds or removes phosphate groups and carboxylation involves adding carbon dioxide. Ubiquitination modifies a protein through addition of small, globular proteins called ubiquitins through isopeptide bonds.
+
+### Question:
+An investigator is studying the modification of newly formed polypeptides in plated eukaryotic cells. After the polypeptides are released from the ribosome, a chemically-tagged protein attaches covalently to lysine residues on the polypeptide chain, forming a modified polypeptide. When a barrel-shaped complex is added to the cytoplasm, the modified polypeptide lyses, resulting in individual amino acids and the chemically-tagged proteins. Which of the following post-translational modifications has most likely occurred?
+(A) Glycosylation
+(B) Phosphorylation
+(C) Ubiquitination
+(D) Carboxylation
+
+The answer is (C) Ubiquitination.
+
+Now, help me with this question. Remember to answer with just a string of one line starting with "The answer is" as shown by the previous examples.

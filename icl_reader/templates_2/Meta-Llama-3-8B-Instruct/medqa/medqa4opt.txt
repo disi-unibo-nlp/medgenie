@@ -1,0 +1,34 @@
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+You are a medical expert. Your task is to answer questions related to medical exams based on a given context by selecting the correct option. Return as output only the selected option.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Select only one option. Don't explain your choice.
+
+### Context:
+Acute hypoxic respiratory failure in the setting of recent surgery for femur fracture suggests pulmonary embolism as the most likely pathogenesis. The histologic section demonstrates a thromboembolus lodged in the lumen of a pulmonary artery. Thrombotic or embolic phenomenon has occurred which led to sudden cardiac arrest (pulmonary\u00a0passive congestion, ischemia, and hypertension are unlikely given that no CAD event or myocardial infarction preceded this acute event).
+
+### Question:
+A pulmonary autopsy specimen from a 58-year-old woman who died of acute hypoxic respiratory failure was examined. She had recently undergone surgery for a fractured femur 3 months ago. Initial hospital course was uncomplicated, and she was discharged to a rehab facility in good health. Shortly after discharge home from rehab, she developed sudden shortness of breath and had cardiac arrest. Resuscitation was unsuccessful. On histological examination of lung tissue, fibrous connective tissue around the lumen of the pulmonary artery is observed. Which of the following is the most likely pathogenesis for the present findings?
+(A) Thromboembolism
+(B) Pulmonary ischemia
+(C) Pulmonary hypertension
+(D) Pulmonary passive congestion<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+(A) Thromboembolism.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Select only one option. Don't explain your choice.
+
+### Context:
+Women with von Willebrand disease (vWD) often present with menorrhagia and easy bruising. The platelet count is usually normal, but the bleeding time and PTT are prolonged. Hemophilia A, lupus anticoagulant, protein C deficiency, or factor V deficiency would not present with these findings on the PTT test.
+
+### Question:
+A 20-year-old woman presents with menorrhagia for the past several years. She says that her menses \u201chave always been heavy\u201d, and she has experienced easy bruising for as long as she can remember. Family history is significant for her mother, who had similar problems with bruising easily. The patient's vital signs include: heart rate 98/min, respiratory rate 14/min, temperature 36.1\u00b0C (96.9\u00b0F), and blood pressure 110/87 mm Hg. Physical examination is unremarkable. Laboratory tests show the following: platelet count 200,000/mm3, PT 12 seconds, and PTT 43 seconds. Which of the following is the most likely cause of this patient\u2019s symptoms?
+(A) Hemophilia A
+(B) Lupus anticoagulant
+(C) Protein C deficiency
+(D) Von Willebrand disease<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+(D) Von Willebrand disease.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Now help me with another question. Just select only one option as you did so far. Don't explain your choice.
+

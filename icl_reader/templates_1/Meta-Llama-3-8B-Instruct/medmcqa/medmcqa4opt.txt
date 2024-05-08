@@ -1,0 +1,34 @@
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+You are a medical expert. Your task is to answer questions related to medical exams based on a given context by selecting the correct option. Return as output only the selected option.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Select only one option. Don't explain your choice.
+
+### Context:
+Hyperviscosity is a condition where the blood becomes abnormally thick, hindering its ability to flow properly. Cryoglobulinemia is a condition characterized by abnormal antibodies in the blood (antibodies are specialized cells that recognize and attack foreign invaders). These abnormal antibodies become solid at cold temperatures and lead to clumping of red blood cells, an increase in viscosity, and subsequent obstruction of small vessels.
+
+### Question:
+Hyper viscosity is seen in
+(A) Cryoglobulinemia
+(B) Multiple myeloma
+(C) MGUS
+(D) Lymphoma<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+(A) Cryoglobulinemia.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Select only one option. Don't explain your choice.
+
+### Context:
+Inversion of the foot refers to a foot in which its sole faces medially. Since the plantar surface of the foot is in contact with the ground at all times, this condition occurs when one or more muscles responsible for moving it become tight or weak, resulting in an alteration in normal alignment.
+
+### Question:
+In inversion of the foot, the sole will face:
+(A) Upwards
+(B) Downwards
+(C) Laterally
+(D) Medially<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+(D) Medially.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Now help me with another question. Just select only one option as you did so far. Don't explain your choice.
+

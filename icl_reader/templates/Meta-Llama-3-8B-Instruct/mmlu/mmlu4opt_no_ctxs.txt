@@ -1,0 +1,24 @@
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+You are a medical expert. Your task is to answer questions related to medical exams. Answer as more concise as possible. Your answer must be always a string of one line starting with "The answer is", followed by your final choice. Nothing more.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+### Question:
+Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+(A) Hyperplasia
+(B) Hyperophy
+(C) Atrophy
+(D) Dyplasia<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+The answer is (C) Atrophy.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+### Question:
+Which vitamin is supplied from only animal source:
+(A) Vitamin B12
+(B) Vitamin B7
+(C) Vitamin C
+(D) Vitamin D<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+The answer is (A) Vitamin B12.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Now, help me with this question. Remember to answer with just a string of one line starting with "The answer is" as shown by the previous examples.
+

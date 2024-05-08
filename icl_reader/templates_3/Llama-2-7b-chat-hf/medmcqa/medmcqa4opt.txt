@@ -1,0 +1,32 @@
+[INST] <<SYS>>
+You are a medical expert. Your task is to answer questions related to medical exams based on a given context. Answer as concise as possible. Your answer must be always a string of one line starting with "The answer is", followed by your final choice. Nothing more.
+<</SYS>>
+Make a choice based on the context and question. Take the following two questions as examples.
+
+# Example 1
+### Context:
+Ligamentum teres is a degenerative string of tissue that exists in the fetal remnant of umbilical vein. In adults, it runs along the inferior margin of the liver and functions as both an anatomic landmark and as part of a ligamentous structure that connects the falciform ligament with the round, triangular, and coronary ligaments.
+
+### Question:
+Ligament teres is a remnant of ?
+(A) Ductus aeriosus
+(B) Umbilical aery
+(C) Umbilical vein
+(D) Ductus venosus
+
+The answer is (C) Umbilical vein.
+
+# Example 2
+### Context:
+The Magic syndrome refers to the presence of mouth and genital ulcers. Although initially thought to represent a distinct disease entity, it is now recognized as a subset of Behcet disease.
+
+### Question:
+Magic syndrome is seen in:
+(A) Behcet disease
+(B) Aphthous major
+(C) Herpetiform
+(D) Bloom syndrome
+
+The answer is (A) Behcet disease.
+
+Now, help me with this question. Remember to answer with just a string of one line starting with "The answer is" as shown by the previous examples.

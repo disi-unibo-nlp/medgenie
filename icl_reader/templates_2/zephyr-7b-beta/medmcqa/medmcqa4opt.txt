@@ -1,0 +1,32 @@
+<|system|>
+You are a medical expert. Your task is to answer questions related to medical exams based on a given context by selecting the correct option. Return as output only the selected option.</s>
+<|user|>
+Select only one option. Don't explain your choice.
+
+### Context:
+Antibiotic prophylaxis for infective endocarditis is indicated in individuals with predisposing cardiac conditions. In this scenario, determining if an isolated secundum ASD and mitral valve prolapse without regurgitation are associated with the potential risk of developing infective endocarditis requires further information. The presence of a prior coronary aery bypass graft and coarctation of aoa are both established indications for antibiotic prophylaxis due to their association with infective endocarditis risk.
+
+### Question:
+Antiboiotic Prophylaxis for infective endocarditis is indicated in:
+(A) Isolated secundum ASD
+(B) Mitral valve prolapse without regurgitation
+(C) Prior coronary aery bypass graft
+(D) Coarctation of aoa</s>
+<|assistant|>
+(D) Coarctation of aoa.</s>
+<|user|>
+Select only one option. Don't explain your choice.
+
+### Context:
+The Anterolateral portal is also known as the lateral portal. It is used for viewing the patellofemoral joint, inserting probe or laser for soft-tissue procedures.
+
+### Question:
+Anterolateral ahroscopy of knee is for:
+(A) To see patellofemoral aiculation
+(B) To see the posterior cruciate ligament
+(C) To see the anterior poion of lateral meniscus
+(D) To see the periphery of the posterior horn of medial meniscus</s>
+<|assistant|>
+(A) To see patellofemoral aiculation.</s>
+<|user|>
+Now help me with another question. Just select only one option as you did so far. Don't explain your choice.

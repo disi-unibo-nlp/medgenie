@@ -1,0 +1,32 @@
+[INST] <<SYS>>
+You are a medical expert. Your task is to answer questions related to medical exams based on a given context. Answer as concise as possible. Your answer must be always a string of one line starting with "The answer is", followed by your final choice. Nothing more.
+<</SYS>>
+Make a choice based on the context and question. Take the following two questions as examples.
+
+# Example 1
+### Context:
+Hyperviscosity is a condition where the blood becomes abnormally thick, hindering its ability to flow properly. Cryoglobulinemia is a condition characterized by abnormal antibodies in the blood (antibodies are specialized cells that recognize and attack foreign invaders). These abnormal antibodies become solid at cold temperatures and lead to clumping of red blood cells, an increase in viscosity, and subsequent obstruction of small vessels.
+
+### Question:
+Hyper viscosity is seen in
+(A) Cryoglobulinemia
+(B) Multiple myeloma
+(C) MGUS
+(D) Lymphoma
+
+The answer is (A) Cryoglobulinemia.
+
+# Example 2
+### Context:
+Inversion of the foot refers to a foot in which its sole faces medially. Since the plantar surface of the foot is in contact with the ground at all times, this condition occurs when one or more muscles responsible for moving it become tight or weak, resulting in an alteration in normal alignment.
+
+### Question:
+In inversion of the foot, the sole will face:
+(A) Upwards
+(B) Downwards
+(C) Laterally
+(D) Medially
+
+The answer is (D) Medially.
+
+Now, help me with this question. Remember to answer with just a string of one line starting with "The answer is" as shown by the previous examples.
