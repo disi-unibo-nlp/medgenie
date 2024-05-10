@@ -40,6 +40,7 @@ class ScriptArguments:
     max_model_len: Optional[int] = field(default=4096, metadata={"help": "Maximum context window specified by default for the selected model"})
     n_contexts: Optional[int] = field(default=5, metadata={"help": "Number of contexts given as input within the prompt."})
     test_set_path: Optional[str] =  field(default=None, metadata={"help": "input path for test data."})
+    n_shots: Optional[int] = field(default=2, metadata={"help": "The number of shot used in the prompt."})
 
 
 def get_accuracy(true_labels, predictions):
@@ -93,12 +94,18 @@ if __name__ == "__main__":
     if "pmc-llama" in args.model_name.lower():
         args.no_contexts = True
 
+    if "llama-3" in args.model_name.lower() or "llama3" in args.model_name.lower():
+        terminators = [
+            tokenizer.eos_token_id, tokenizer.convert_tokens_to_ids("<|eot_id|>")
+        ]
+
     sampling_params = SamplingParams(
         n=1, 
         temperature=0.0, 
         top_p=1.0, 
         max_tokens=50, 
-        use_beam_search=False
+        use_beam_search=False,
+        stop_token_ids = terminators if "llama-3" in args.model_name.lower() or "llama3" in args.model_name.lower() else None,
     )
     
     llm = LLM(
@@ -161,14 +168,19 @@ if __name__ == "__main__":
 
         for out in outputs:
             prompt = out.prompt
-            question = prompt.split("### Question:")[3].strip()
+            answer = out.outputs[0].text
+            
+            question = prompt.split("Question:")[args.n_shot+1].strip() if "llama-3" in args.model_name.lower() or "llama3" in args.model_name.lower() else prompt.split("### Question:")[args.n_shot+1].strip()
             if "zephyr" in args.model_name.lower():
                 question = question.split("<|assistant|>")[0].strip()
             elif "llama-2" in args.model_name.lower():
                 question = question.split("[/INST]")[0].strip()
+            elif "llama-3" in args.model_name.lower() or "llama3" in args.model_name.lower():
+                question = question.split("<|eot_id|>")[0].strip()
+                answer = answer.replace("<|eot_id|>", "").strip()
+                if "(" not in answer:
+                    answer = "(" + answer.strip()[0] + ")"
             
-            answer = out.outputs[0].text
-           
             if answer.strip():
                 if "pmc-llama" in args.model_name.lower():
                     pred = answer.strip()[0] 
