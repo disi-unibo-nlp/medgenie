@@ -170,7 +170,7 @@ if __name__ == "__main__":
             prompt = out.prompt
             answer = out.outputs[0].text
             
-            question = prompt.split("Question:")[args.n_shot+1].strip() if "llama-3" in args.model_name.lower() or "llama3" in args.model_name.lower() else prompt.split("### Question:")[args.n_shot+1].strip()
+            question = prompt.split("Question:")[args.n_shots+1].strip() if "llama-3" in args.model_name.lower() or "llama3" in args.model_name.lower() else prompt.split("### Question:")[args.n_shots+1].strip()
             if "zephyr" in args.model_name.lower():
                 question = question.split("<|assistant|>")[0].strip()
             elif "llama-2" in args.model_name.lower():
