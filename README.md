@@ -197,6 +197,11 @@ python3 benchmark.py \
 ```bash
     --no_contexts \
 ```
+
+* The `human_crafted` templates are utilized by default. To change them, use:
+```bash
+    --templates_dir path_to_templates \
+```
 ---
 
 ## Main accuracy results
