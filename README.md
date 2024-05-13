@@ -230,6 +230,23 @@ python3 benchmark.py \
 *zero/few-shot inference
 
 ## RAGAS Evaluation
+
+### Context recall
+```math
+Context\ Recall = \frac{|GT\ sentences\ that\ can\ be\ attributed\ to\ context|}{|Number\ of\ sentences\ in\ GT|}
+```
+
+### Context precision
+```math
+Context\ Precision@K = \frac{\left( \sum_\limits{k=1}^K \text{Precision@}K \times v_k \right)}{\text{Total number of relevant items in the top }K \text{ results}}
+```
+
+### Faithfulness
+```math
+Faithfulness = \frac{|Number\ of\ claims\ in\ the\ generated\ answer\ that\ can\ be\ inferred\ from\ given\ context|}{|Total\ number\ of\ claims\ in\ the\ generated\ answer|}
+```
+
+
 | Metric | Dataset| N. Samples | Answer | G | R |
 | --- | --- | :---: | --- | :---: | :---: |
 | Context Precision | MedQA | 150 | positive | 87.9 | 48.6 |
