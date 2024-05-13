@@ -207,6 +207,8 @@ python3 benchmark.py \
 ## Main accuracy results
 | Model | Ground (Source) | MedQA | MedMCQA | MMLU | AVG (&darr;) |
 | --- | --- | --- | --- | --- | --- |
+| LLaMA-3-Instruct (8B) [0-shot] | Ø | 60.8 | soon | soon | - |
+| LLaMA-3-Instruct (8B) [1-shot] | Ø | 60.6 | soon | soon | - |
 | MEDISTRON (7B) | Ø | 52.0 | 59.2 | 55.6 | 55.6 |
 | PMC-LLaMA (7B) | Ø | 49.2 | 51.4 | 59.7 | 53.4 |
 | LLaMA-2 (7B) | Ø | 49.6 | 54.4 | 56.3 | 53.4 |
@@ -214,9 +216,9 @@ python3 benchmark.py \
 | Mistral-Instruct* (7B) | Ø | 41.1 | 40.2 | 55.8 | 45.7 |
 | LLaMA-2-chat* (7B) | Ø | 36.9 | 35.0 | 49.3 | 40.4 |
 | Codex* (175B) | Ø | 52.5 | 50.9 | - | - |
-| LLaMA-3-Instruct (8B) [0-shot] | Ø | 60.8 | soon | soon | - |
-| LLaMA-3-Instruct (8B) [1-shot] | Ø | 60.6 | soon | soon | - |
 |---|---|---|---|---|---|
+| MedGENIE-LLaMA-3-Instruct (8B) [0-shot] | G (PMC-LLaMA) | 61.5 | soon | soon | - |
+| MedGENIE-LLaMA-3-Instruct (8B) [1-shot] | G (PMC-LLaMA) | 63.1 | soon | soon | - |
 | MedGENIE-Zephyr-β* (7B) | G (PMC-LLaMA) | 59.7 | 51.0  | 66.1  | 58.9  |
 | MedGENIE-FID-Flan-T5 (250M) | G (PMC-LLaMA) | 53.1 | 52.1 | 59.9 | 55.0 |
 | Zephyr-β* (7B) | R (MedWiki) | 50.5 | 47.0 | 66.9 | 54.8 |
@@ -224,8 +226,6 @@ python3 benchmark.py \
 | MedGENIE-LLaMA-2-chat* (7B) | G (PMC-LLaMA) | 52.6 | 44.8  | 58.8 | 52.1  |
 | Mistral-Instruct* (7B) | R (MedWiki) | 45.1 | 44.3 | 58.5 | 49.3 |
 | LLaMA-2-chat* (7B) | R (MedWiki) | 37.2 | 37.2 | 52.0 | 42.1 |
-| LLaMA-3-Instruct (8B) [0-shot] | G (PMC-LLaMA) | 61.5 | soon | soon | - |
-| LLaMA-3-Instruct (8B) [1-shot] | G (PMC-LLaMA) | 63.1 | soon | soon | - |
 
 *zero/few-shot inference
 
