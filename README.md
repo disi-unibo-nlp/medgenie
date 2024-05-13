@@ -215,6 +215,7 @@ python3 benchmark.py \
 | LLaMA-2-chat* (7B) | Ø | 36.9 | 35.0 | 49.3 | 40.4 |
 | Codex* (175B) | Ø | 52.5 | 50.9 | - | - |
 | LLaMA-3-Instruct (8B) [0-shot] | Ø | 60.8 | soon | soon | - |
+| LLaMA-3-Instruct (8B) [1-shot] | Ø | 60.6 | soon | soon | - |
 |---|---|---|---|---|---|
 | MedGENIE-Zephyr-β* (7B) | G (PMC-LLaMA) | 59.7 | 51.0  | 66.1  | 58.9  |
 | MedGENIE-FID-Flan-T5 (250M) | G (PMC-LLaMA) | 53.1 | 52.1 | 59.9 | 55.0 |
