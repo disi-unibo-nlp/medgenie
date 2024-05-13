@@ -233,17 +233,19 @@ python3 benchmark.py \
 ### Metrics
 * `Context recall`
 ```math
-Context\ Recall = \frac{|GT\ sentences\ that\ can\ be\ attributed\ to\ context|}{|Number\ of\ sentences\ in\ GT|}
+Context\ Recall = \frac{|\text{GT sentences that can be attributed to context}|}{|\text{Number of sentences in GT}|}
 ```
 
 * `Context precision`
 ```math
 Context\ Precision@K = \frac{\left( \sum_\limits{k=1}^K \text{Precision@}K \times v_k \right)}{\text{Total number of relevant items in the top }K \text{ results}}
 ```
-
+```math
+Precision@K = \frac{\text{true positives@k}}{(\text{true positives@k} + \text{false positives@k})}
+```
 * `Faithfulness`
 ```math
-Faithfulness = \frac{|Number\ of\ claims\ in\ the\ generated\ answer\ that\ can\ be\ inferred\ from\ given\ context|}{|Total\ number\ of\ claims\ in\ the\ generated\ answer|}
+Faithfulness = \frac{|\text{Number of claims in the generated answer that can be inferred from given context}|}{|\text{Total number of claims in the generated answer}|}
 ```
 
 ### Results
