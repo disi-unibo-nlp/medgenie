@@ -29,7 +29,7 @@ class ScriptArguments:
     validation_set: Optional[bool] = field(default=False, metadata={"help": "validation set split is consider for context generation"})
     test_set: Optional[bool] = field(default=False, metadata={"help": "test set split is consider for context generation"})
     n_options: Optional[int] = field(default=4, metadata={"help": "Number of choices per question."})
-    templates_dir: Optional[str] =  field(default="./templates", metadata={"help": "prompt templates directory"})
+    templates_dir: Optional[str] =  field(default="./templates/human_crafted", metadata={"help": "prompt templates directory (human crafted by default)"})
     out_preds_dir: Optional[str] =  field(default="./predictions", metadata={"help": "outputs directory"})
     out_example_prompt_dir: Optional[str] =  field(default="./examples", metadata={"help": "outputs directory for storing example prompts"})
     out_name: Optional[str] =  field(default=None, metadata={"help": "output filename"})
