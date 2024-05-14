@@ -16,6 +16,7 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
     - [FID](#1-fusion-in-decoder-fid)
     - [ICL](#2-in-context-learning-icl)
 - [Main results](#main-accuracy-results)
+- [RAGAS Evaluation](#ragas-evaluation)
 - [Citation](#-citation)
 
 ## 🖇 Models 
