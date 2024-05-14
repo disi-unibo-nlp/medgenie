@@ -278,7 +278,7 @@ Additionally, context recall and precision are evaluated using 50 random questio
 
 All scores have been computed by using `gpt-4-turbo-2024-04-09` as evaluator.
 
-Estimated cost: $55
+Estimated cost: ~$55
 
 ## 📚 Citation
 If you find this research useful, or if you utilize the code and models presented, please cite:
