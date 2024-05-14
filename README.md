@@ -232,18 +232,24 @@ python3 benchmark.py \
 ## RAGAS Evaluation
 ### Metrics
 * `Context recall`
+To calculate context recall, each sentence in the ground truth (GT) answer is examined to determine if it can be linked back to the retrieved/generated context. Ideally, all sentences in the ground truth answer should be identifiable within the retrieved/generated context for optimal context recall. The values range between 0 and 1, with higher values indicating better performance. Check out the [Ragas Documentation](https://docs.ragas.io/en/latest/concepts/metrics/context_recall.html) for more on this metric.
+
 ```math
 Context\ Recall = \frac{|\text{GT sentences that can be attributed to context}|}{|\text{Number of sentences in GT}|}
 ```
 
 * `Context precision`
+is a measure that assesses if all relevant items from the ground truth (GT) in the contexts are ranked higher. Ideally all the relevant chunks must appear at the top ranks. This metric is computed using the question, ground truth and the contexts, with values ranging between 0 and 1, where higher scores indicate better precision.  Check out the [Ragas Documentation](https://docs.ragas.io/en/latest/concepts/metrics/context_precision.html) for more on this metric.
+  
 ```math
 Context\ Precision@K = \frac{\left( \sum_\limits{k=1}^K \text{Precision@}K \times v_k \right)}{\text{Total number of relevant items in the top }K \text{ results}}
 ```
 ```math
 Precision@K = \frac{\text{true positives@k}}{(\text{true positives@k} + \text{false positives@k})}
 ```
+
 * `Faithfulness`
+evaluates the factual consistency of the generated answer with the provided context. It calculates a score based on how well the claims in the answer align with the given context.  To determine faithfulness, the claims in the answer are compared against the context to see if they can be inferred accurately. The score is scaled to a range of (0,1), where higher values indicate better faithfulness. Check out the [Ragas Documentation](https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html) for more on this metric.
 ```math
 Faithfulness = \frac{|\text{Number of claims in the generated answer that can be inferred from given context}|}{|\text{Total number of claims in the generated answer}|}
 ```
