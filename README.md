@@ -256,9 +256,9 @@ Faithfulness = \frac{|\text{Number of claims in the generated answer that can be
 
 ### Results
 
-The table displays scores from 150 random questions in MedQA, where both retrieved and generated contexts led the LLM to answer correctly (*positive*). Higher scores reflect better context quality and correctness.
+The table displays scores from 150 random questions in MedQA, where both retrieved (R) and generated (G) contexts led the LLM to answer correctly (*positive*). Higher scores reflect better context quality and correctness.
 
-Additionally, context recall and precision are evaluated using 50 random questions where both generated and retrieved contexts led the LLM to answer incorrectly (*negative*). Higher scores in these cases might suggest correctness in the generated or retrieved contexts but also highlight the LLM's difficulty in finding relevant information within the given context.
+Additionally, context recall and precision are evaluated using 50 random questions where both retrieved (R) and generated (G) contexts led the LLM to answer incorrectly (*negative*). Higher scores in these cases might suggest correctness in the generated or retrieved contexts but also highlight the LLM's difficulty in finding relevant information within the given context.
 
 | Metric | Dataset| N. Samples | Answer | G | R |
 | --- | --- | :---: | --- | :---: | :---: |
