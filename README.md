@@ -267,12 +267,12 @@ Additionally, context recall and precision are evaluated using 50 random questio
     
 | Metric | Dataset| N. Samples | Answer | G | R |
 | --- | --- | :---: | --- | :---: | :---: |
-| Context Precision | MedQA | 150 |*positive* | 87.9 | 48.6 |
-| Context Recall | MedQA | 150 | *positive* | 93.4 | 76.2 | 
-| Faithfulness | MedQA | 150 |*positive* | 59.7 | 23.8 |
+| Context Precision | MedQA | 150 |*positive* | 87.9<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/4d4249bf-f432-4dd5-afc3-1a5fdb42aa7b/r) | 48.6<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/7ff3d138-adc6-4cd8-8a49-5fe2175a6b0a/r) |
+| Context Recall | MedQA | 150 | *positive* | 93.4<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/08a26eea-7c7c-4f69-9698-daf62635ba02/r) | 76.2<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/16807dd2-cf7d-473b-86f8-cf6d825e17d7/r) | 
+| Faithfulness | MedQA | 150 |*positive* | 59.7<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/08a26eea-7c7c-4f69-9698-daf62635ba02/r) | 23.8<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/16807dd2-cf7d-473b-86f8-cf6d825e17d7/r) |
 | --- | --- | --- | --- | --- | --- |
-| Context Precision | MedQA| 50 | *negative* | 55.3 | 29.5 |
-| Context Recall | MedQA | 50 | *negative* | 59.2 | 32.0 |
+| Context Precision | MedQA| 50 | *negative* | 55.3<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/0ee14f13-02df-44ca-928b-50b27eb0eea9/r) | 29.5<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/4c7fc330-3974-4e05-b90c-f8edf23663de/r) |
+| Context Recall | MedQA | 50 | *negative* | 59.2<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/8f117018-a91c-4fe0-b67e-a1960bf4d204/r) | 32.0<br>[<sub>(check evals)</sub>](https://smith.langchain.com/public/4fb7929a-e6a0-4e7a-ae87-42eb197d35c8/r) |
 
 </div>
 
