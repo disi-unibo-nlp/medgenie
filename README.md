@@ -205,6 +205,8 @@ python3 benchmark.py \
 ---
 
 ## Main accuracy results
+<div align="center">
+    
 | Model | Ground (Source) | MedQA | MedMCQA | MMLU | AVG (&darr;) |
 | --- | --- | --- | --- | --- | --- |
 | LLaMA-3-Instruct (8B) [0-shot] | Ø | 60.8 | soon | soon | - |
@@ -227,6 +229,7 @@ python3 benchmark.py \
 | Mistral-Instruct* (7B) | R (MedWiki) | 45.1 | 44.3 | 58.5 | 49.3 |
 | LLaMA-2-chat* (7B) | R (MedWiki) | 37.2 | 37.2 | 52.0 | 42.1 |
 
+</div>
 *zero/few-shot inference
 
 ## RAGAS Evaluation
@@ -260,6 +263,8 @@ The table displays scores from 150 random questions in MedQA, where both retriev
 
 Additionally, context recall and precision are evaluated using 50 random questions where both retrieved (R) and generated (G) contexts led the LLM to answer incorrectly (*negative*). Higher scores in these cases might suggest correctness in the generated or retrieved contexts but also highlight the LLM's difficulty in finding relevant information within the given context.
 
+<div align="center">
+    
 | Metric | Dataset| N. Samples | Answer | G | R |
 | --- | --- | :---: | --- | :---: | :---: |
 | Context Precision | MedQA | 150 |*positive* | 87.9 | 48.6 |
@@ -269,6 +274,7 @@ Additionally, context recall and precision are evaluated using 50 random questio
 | Context Precision | MedQA| 50 | *negative* | 55.3 | 29.5 |
 | Context Recall | MedQA | 50 | *negative* | 59.2 | 32.0 |
 
+</div>
 
 ## 📚 Citation
 If you find this research useful, or if you utilize the code and models presented, please cite:
