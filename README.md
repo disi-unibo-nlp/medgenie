@@ -256,14 +256,18 @@ Faithfulness = \frac{|\text{Number of claims in the generated answer that can be
 
 ### Results
 
+The table displays scores from 150 random questions in MedQA, where both retrieved and generated contexts led the LLM to answer correctly (*positive*). Higher scores reflect better context quality and correctness.
+
+Additionally, context recall and precision are evaluated using 50 random questions where both generated and retrieved contexts led the LLM to answer incorrectly (*negative*). Higher scores in these cases might suggest correctness in the generated or retrieved contexts but also highlight the LLM's difficulty in finding relevant information within the given context.
+
 | Metric | Dataset| N. Samples | Answer | G | R |
 | --- | --- | :---: | --- | :---: | :---: |
-| Context Precision | MedQA | 150 | positive | 87.9 | 48.6 |
-| Context Recall | MedQA | 150 | positive | 93.4 | 76.2 | 
-| Faithfulness | MedQA | 150 | positive | 59.7 | 23.8 |
+| Context Precision | MedQA | 150 |*positive* | 87.9 | 48.6 |
+| Context Recall | MedQA | 150 | *positive* | 93.4 | 76.2 | 
+| Faithfulness | MedQA | 150 |*positive* | 59.7 | 23.8 |
 | --- | --- | --- | --- | --- | --- |
-| Context Precision | MedQA| 50 | negative | 55.3 | 29.5 |
-| Context Recall | MedQA | 50 | negative | 59.2 | 32.0 |
+| Context Precision | MedQA| 50 | *negative* | 55.3 | 29.5 |
+| Context Recall | MedQA | 50 | *negative* | 59.2 | 32.0 |
 
 
 ## 📚 Citation
