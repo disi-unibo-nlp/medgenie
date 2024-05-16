@@ -212,7 +212,7 @@ python3 benchmark.py \
 | --- | --- | --- | --- | --- | --- |
 | LLaMA-3-Instruct (8B) [0-shot] | Ø | 60.8 | soon | soon | - |
 | LLaMA-3-Instruct (8B) [1-shot] | Ø | 60.6 | soon | soon | - |
-| MEDISTRON (7B) | Ø | 52.0 | 59.2 | 55.6 | 55.6 |
+| MEDITRON (7B) | Ø | 52.0 | 59.2 | 55.6 | 55.6 |
 | Phi-3-mini-128k-instruct (3.8B) [1-shot]| Ø | 55.1 | soon | soon | - |
 | Phi-3-mini-128k-instruct (3.8B) [0-shot]| Ø | 53.7 | 52.5 | soon | - |
 | PMC-LLaMA (7B) | Ø | 49.2 | 51.4 | 59.7 | 53.4 |
