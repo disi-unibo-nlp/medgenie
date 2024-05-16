@@ -210,11 +210,9 @@ python3 benchmark.py \
     
 | Model | Ground (Source) | MedQA | MedMCQA | MMLU | AVG (&darr;) |
 | --- | --- | --- | --- | --- | --- |
-| LLaMA-3-Instruct (8B) [0-shot] | Ø | 60.8 | soon | soon | - |
 | LLaMA-3-Instruct (8B) [1-shot] | Ø | 60.6 | soon | soon | - |
 | MEDITRON (7B) | Ø | 52.0 | 59.2 | 55.6 | 55.6 |
 | Phi-3-mini-128k-instruct (3.8B) [1-shot]| Ø | 55.1 | soon | soon | - |
-| Phi-3-mini-128k-instruct (3.8B) [0-shot]| Ø | 53.7 | 52.5 | soon | - |
 | PMC-LLaMA (7B) | Ø | 49.2 | 51.4 | 59.7 | 53.4 |
 | LLaMA-2 (7B) | Ø | 49.6 | 54.4 | 56.3 | 53.4 |
 | Zephyr-β* (7B) | Ø | 49.3 | 43.4 | 60.7 | 51.1 |
@@ -223,7 +221,6 @@ python3 benchmark.py \
 | Codex* (175B) | Ø | 52.5 | 50.9 | - | - |
 |---|---|---|---|---|---|
 | MedGENIE-Phi-3-mini-128k-instruct (3.8B) [1-shot]| G (PMC-LLaMA) | 64.7 | soon | soon | - |
-| MedGENIE-LLaMA-3-Instruct (8B) [0-shot] | G (PMC-LLaMA) | 61.5 | soon | soon | - |
 | MedGENIE-LLaMA-3-Instruct (8B) [1-shot] | G (PMC-LLaMA) | 63.1 | soon | soon | - |
 | MedGENIE-Zephyr-β* (7B) | G (PMC-LLaMA) | 59.7 | 51.0  | 66.1  | 58.9  |
 | MedGENIE-FID-Flan-T5 (250M) | G (PMC-LLaMA) | 53.1 | 52.1 | 59.9 | 55.0 |
