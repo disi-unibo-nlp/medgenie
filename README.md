@@ -6,6 +6,8 @@ Official source code of **MedGENIE**, the first generate-then-read framework for
 
 <img src="figures/medgenie.png" alt="medgenie architecture">
 
+For more information, refer to our paper [*To Generate or to Retrieve? On the Effectiveness of Artificial Contexts for Medical Open-Domain Question Answering*](https://arxiv.org/abs/2403.01924)
+
 ## 📌 Tables Of Contents
 - [Models](#-models)
 - [Datasets](#-datasets)
