@@ -223,7 +223,7 @@ python3 benchmark.py \
 | Codex* (175B) | Ø | 52.5 | 50.9 | - | - |
 |---|---|---|---|---|---|
 | MedGENIE-Phi-3-mini-128k-instruct (3.8B) [1-shot]| G (PMC-LLaMA) | 64.7 | soon | soon | - |
-| MedGENIE-LLaMA-3-Instruct (8B) [1-shot] | G (PMC-LLaMA) | 63.1 | 56.2 | 68.9 | 63.1 |
+| MedGENIE-LLaMA-3-Instruct (8B) [1-shot] | G (PMC-LLaMA) | 63.1 | 56.2 | 68.9 | 62.7 |
 | MedGENIE-Zephyr-β* (7B) | G (PMC-LLaMA) | 59.7 | 51.0  | 66.1  | 58.9  |
 | MedGENIE-FID-Flan-T5 (250M) | G (PMC-LLaMA) | 53.1 | 52.1 | 59.9 | 55.0 |
 | Zephyr-β* (7B) | R (MedWiki) | 50.5 | 47.0 | 66.9 | 54.8 |
