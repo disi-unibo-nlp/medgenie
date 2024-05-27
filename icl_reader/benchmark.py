@@ -108,13 +108,19 @@ if __name__ == "__main__":
         stop_token_ids = terminators if "llama-3" in args.model_name.lower() or "llama3" in args.model_name.lower() else None,
     )
     
-    llm = LLM(
-        model=args.model_name,
-        gpu_memory_utilization=.95,
-        dtype="half" if "awq" in args.model_name.lower() else "auto",
-        quantization="awq" if "awq" in args.model_name.lower() else None,
-        max_model_len=2048 if "pmc-llama" in args.model_name.lower() else args.max_model_len
-    )
+    llm_args = {
+        "model": args.model_name,
+        "gpu_memory_utilization": .95,
+        "dtype": "half" if "awq" in args.model_name.lower() else "auto",
+        "quantization": "awq" if "awq" in args.model_name.lower() else None,
+        "max_model_len": 2048 if "pmc-llama" in args.model_name.lower() else args.max_model_len,
+    }
+
+    if "phi" in args.model_name.lower():
+        llm_args["enforce_eager"] = True
+        llm_args["trust_remote_code"]=True
+
+    llm = LLM(**llm_args)
 
     logger.info(f"Dataset: {args.dataset_name}")
     if args.test_set_path:
@@ -170,7 +176,7 @@ if __name__ == "__main__":
             prompt = out.prompt
             answer = out.outputs[0].text
             
-            question = prompt.split("Question:")[args.n_shots+1].strip() if "llama-3" in args.model_name.lower() or "llama3" in args.model_name.lower() else prompt.split("### Question:")[args.n_shots+1].strip()
+            question = prompt.split("Question:")[args.n_shots+1].strip() if "llama-3" in args.model_name.lower() or "llama3" in args.model_name.lower() or "phi" in args.model_name.lower() else prompt.split("### Question:")[args.n_shots+1].strip()
             if "zephyr" in args.model_name.lower():
                 question = question.split("<|assistant|>")[0].strip()
             elif "llama-2" in args.model_name.lower():
@@ -180,6 +186,10 @@ if __name__ == "__main__":
                 answer = answer.replace("<|eot_id|>", "").strip()
                 if "(" not in answer:
                     answer = "(" + answer.strip()[0] + ")"
+            elif "phi"  in args.model_name.lower():
+                if "(" not in answer:
+                    answer = "(" + answer.strip()[0] + ")"
+
             
             if answer.strip():
                 if "pmc-llama" in args.model_name.lower():
